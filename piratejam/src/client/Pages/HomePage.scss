@@ -1,0 +1,9 @@
+@import "../style/global_colors.scss";
+.HomePage {
+    .gameView {
+        background-color: $ocean-background-color;
+    }
+    .interfaceView {
+        background-color: $interface-background-color;
+    }
+}

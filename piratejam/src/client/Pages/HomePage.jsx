@@ -1,10 +1,20 @@
 import React from 'react';
+import { Input } from 'antd';
+import i18n from 'i18next';
+import { withI18n, reactI18nextModule } from 'react-i18next';
+import { CONFIG } from '../i18n.js';
 // $FlowFixMe
 import './HomePage.scss';
 
-type Props = {};
+i18n
+  .use(reactI18nextModule) // passes i18n down to react-i18next
+  .init(CONFIG);
+
+type Props = {
+  t: any,
+};
 type State = {};
-export default class LoginPage extends React.Component<Props, State> {
+class HomePage extends React.Component<Props, State> {
   constructor() {
     super();
     this.state = {};
@@ -15,11 +25,27 @@ export default class LoginPage extends React.Component<Props, State> {
   componentWillReceiveProps() {}
 
   render() {
+    const { t } = this.props;
     return (
       <div className="Page HomePage">
-        <div className="gameView">Game View.</div>
-        <div className="interfaceView">Interface</div>
+        <div className="gameView">
+          <span>Game View</span>
+        </div>
+        <div className="interfaceView">
+          <div className="interfaceLeft">
+            <div className="inputWrapper">
+              <Input
+                addonBefore={<div className="inputBefore"> :) </div>}
+                defaultValue={t('Input_Placeholder')}
+              />
+            </div>
+          </div>
+          <div className="interfaceRight" />
+        </div>
       </div>
     );
   }
 }
+
+const HomePageWithI18n = withI18n()(HomePage); // pass `t` function to App
+export default HomePageWithI18n;

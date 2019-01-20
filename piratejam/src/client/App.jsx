@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import Routes from './routes/routes.jsx';
 
 type Props = {};
-
 type State = { status: boolean };
 
 class App extends React.Component<Props, State> {
@@ -13,7 +12,7 @@ class App extends React.Component<Props, State> {
   render() {
     return (
       <BrowserRouter>
-        <Routes />
+        <Routes t />
       </BrowserRouter>
     );
   }

@@ -22,7 +22,9 @@
     "no-underscore-dangle": "off",
     "jsx-a11y/label-has-for": "warn",
     "no-return-assign": "warn",
-    "max-len": [1, 120, 2, {"ignoreUrls": true}],
+    "max-len": [1, 120, 2, {
+      "ignoreUrls": true
+    }],
     "no-param-reassign": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-static-element-interactions": "off",
@@ -30,6 +32,6 @@
     "no-case-declarations": "warn",
     "class-methods-use-this": "warn",
     "consistent-return": "warn",
-    "import/prefer-default-export": "warn"
+    "import/prefer-default-export": "off"
   }
 }

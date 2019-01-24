@@ -1,24 +1,32 @@
 // @flow
 // eslint-disable-next-line
-type TransitionType = {
-    fromState: string;
-    toState: string;
-    checkConditionsFunction: any;
+export type TransitionType = {
+    _fromState: string;
+    _toState: string;
+    _checkConditionsFunction: any;
+    toState: () => string;
+    checkConditionsFunction: () => any;
 }
 
 export class Transition {
+  _fromState: string;
+
+  _toState: string;
+
+  _checkConditionsFunction: any;
+
   constructor(fromState: string, toState: string, checkConditionsFunction: any) {
-    this.fromState = fromState;
-    this.toState = toState;
-    this.checkConditionsFunction = checkConditionsFunction;
+    this._fromState = fromState;
+    this._toState = toState;
+    this._checkConditionsFunction = checkConditionsFunction;
   }
 
   get fromState() {
-    return this.fromState;
+    return this._fromState;
   }
 
   get toState() {
-    return this.toState;
+    return this._toState;
   }
 
   get checkConditionsFunction() {
@@ -33,7 +41,7 @@ export class Transition {
     });
   }
 
-  checkConditions(params: Object): boolean {
+  checkConditions(params: Object): any {
     this.checkConditionsFunction(params);
   }
 }

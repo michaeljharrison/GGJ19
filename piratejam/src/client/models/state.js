@@ -1,46 +1,49 @@
+// @flow
 import {
   Transition,
 } from './transition';
-import type TransitionType from './transition';
-
-// @flow
+import type { TransitionType } from './transition';
 
 // eslint-disable-next-line
 type StateType = {
-    stateName: string;
-    transitions: Array < Transition > ;
+    _stateName: string;
+    _transitions: Array < Transition > ;
 };
 
 export class State {
+  _transitions: Array< TransitionType >;
+
+  _stateName: string;
+
   constructor(stateName: string, transitions: Array < TransitionType >) {
-    this.transitions = transitions;
-    this.stateName = stateName;
+    this._transitions = transitions;
+    this._stateName = stateName;
   }
 
   get transitions() {
-    return this.transitions;
+    return this._transitions;
   }
 
   get stateName() {
-    return this.stateName;
+    return this._stateName;
   }
 
   toString() {
     return JSON.stringify({
-      stateName: this.stateName,
-      transitions: this.transitions,
+      stateName: this._stateName,
+      transitions: this._transitions,
     });
   }
 
-  checkAllTransitions(params: Object): string | boolean {
+  checkAllTransitions(params: Object): Promise<any> {
     return new Promise((resolve, reject) => {
       const {
-        transitions,
+        _transitions,
       } = this;
-      transitions.forEach((transition) => {
-        transition.checkConditions(params).then((result) => {
+      _transitions.forEach((transition) => {
+        transition.checkConditionsFunction()(params).then((result) => {
           if (result === true) {
-            resolve(transition.endState);
+            resolve(transition.toState);
           }
         }).catch((err) => { reject(err); });
       });

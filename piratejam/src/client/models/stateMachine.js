@@ -13,37 +13,37 @@ import type StateType from './state';
 
 export class StateMachine {
   constructor(states: Array < StateType >, initialStateIndex: number) {
-    this.states = states;
-    this.currentStateIndex = initialStateIndex;
-    this.currentState = states[this.currentStateIndex];
+    this._states = states;
+    this._currentStateIndex = initialStateIndex;
+    this._currentState = states[this.currentStateIndex];
   }
 
   get params() {
-    return this.params;
+    return this._params;
   }
 
   get states() {
-    return this.states;
+    return this._states;
   }
 
   get currentState() {
-    return this.currentState;
+    return this._currentState;
   }
 
   setStates(newStates: Array < StateType >) {
-    this.states = newStates;
+    this._states = newStates;
   }
 
   update(params: Object) {
     return new Promise((resolve, reject) => {
       const {
-        currentState, states,
+        _currentState, _states,
       } = this;
-      currentState.checkAllTransitions(params).then((result) => {
+      _currentState.checkAllTransitions(params).then((result) => {
         if (result) {
-          const foundIndex = _.findIndex(states, o => o.stateName === result);
+          const foundIndex = _.findIndex(_states, o => o.stateName === result);
           if (foundIndex >= 0) {
-            this.currentState = states[foundIndex];
+            this.currentState = _states[foundIndex];
             this.currentStateIndex = foundIndex;
             resolve(true);
           } else {
@@ -61,8 +61,8 @@ export class StateMachine {
 
   toString() {
     return JSON.stringify({
-      states: this.states,
-      currentState: this.currentState,
+      states: this._states,
+      currentState: this._currentState,
     });
   }
 }

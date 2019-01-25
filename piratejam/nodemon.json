@@ -1,9 +1,0 @@
-{
-  "verbose": true,
-  "ignore": [
-    "*.test.js*",
-    "*/uploads/*",
-    "uploads/*",
-    "dist/*"
-  ]
-}

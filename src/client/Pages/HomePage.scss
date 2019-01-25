@@ -1,0 +1,45 @@
+@import "../style/global_colors.scss";
+
+.HomePage {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    height: 100%;
+
+    .gameView {
+        background-color: $ocean-background-color;
+        flex-grow: 2;
+    }
+
+    .interfaceView {
+        display: flex;
+        flex-direction: row;
+        background-color: $interface-background-color;
+        flex-grow: 1;
+        justify-items: flex-end;
+        padding-bottom: 20px;
+        padding-top: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        .interfaceLeft {
+            order: 1;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 3;
+
+            .inputWrapper {
+                margin-top: auto;
+            }
+        }
+
+        .interfaceRight {
+            order: 2;
+            display: flex;
+            flex-grow: 1;
+            flex-direction: column;
+        }
+
+
+    }
+}

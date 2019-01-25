@@ -1,0 +1,9 @@
+{
+  "title": "Json Test Document",
+  "message": "This is a JSON file for testing.",
+  "integer": 1,
+  "nested": {
+    "a": 1,
+    "b": "2"
+  }
+}

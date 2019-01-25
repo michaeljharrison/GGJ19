@@ -31,7 +31,7 @@ export default class Interface extends React.Component<Props, State> {
   constructor() {
     super();
     this.state = {
-      commandHistory: [],
+      commandHistory: ['', '', ''],
       currentCommandInput: '',
     };
   }
@@ -65,6 +65,16 @@ export default class Interface extends React.Component<Props, State> {
     this.forceUpdate();
   }
 
+  @autobind
+  _renderCommandHistory() {
+    const { commandHistory } = this.state;
+    const array = [];
+    for (let i = 0; i < commandHistory.length; i += 1) {
+      array.push(<div className={`history ${i}`}>{commandHistory[i]}</div>);
+    }
+    return array;
+  }
+
   render() {
     let { stateMachine } = this.props;
     const { commandHistory, currentCommandInput } = this.state;
@@ -89,11 +99,7 @@ export default class Interface extends React.Component<Props, State> {
               allowClear
             />
           </div>
-          <div className="historyWrapper">
-            {commandHistory[0] && <div className="history first">{commandHistory[0]}</div>}
-            {commandHistory[1] && <div className="history second">{commandHistory[1]}</div>}
-            {commandHistory[2] && <div className="history third">{commandHistory[2]}</div>}
-          </div>
+          <div className="historyWrapper">{this._renderCommandHistory()}</div>
         </div>
         <div className="interfaceRight">
           <Button>Menu</Button>

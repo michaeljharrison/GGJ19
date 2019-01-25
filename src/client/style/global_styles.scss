@@ -1,6 +1,5 @@
 @import "./global_colors.scss";
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:100,300,400,500,700,900");
-
 html {
     height: 100%;
     overflow: hidden;
@@ -14,7 +13,6 @@ body {
     margin: 0px;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-
     #root {
         height: 100%
     }
@@ -22,5 +20,4 @@ body {
 
 span {
     color: white;
-
 }

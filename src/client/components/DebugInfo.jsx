@@ -24,7 +24,8 @@ class HomePage extends React.Component<Props, State> {
   componentWillReceiveProps() {}
 
   render() {
-    const { stateMachine } = this.props;
+    let { stateMachine } = this.props;
+    if (!stateMachine) stateMachine = {};
     return (
       <div className="DebugInfo">
         {' '}

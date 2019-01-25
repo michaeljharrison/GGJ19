@@ -1,0 +1,26 @@
+@import "../style/global_colors.scss";
+.interface {
+    display: flex;
+    flex-direction: column;
+    background-color: $interface-background-color;
+    justify-items: flex-end;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    .inputWrapper {
+        order: 1;
+    }
+    .historyWrapper {
+        order: 2;
+        display: flex;
+        flex-direction: column;
+        .history {
+            width: 100%;
+            color: white;
+            background: rgba(256, 256, 256, 0.2);
+            margin-top: 2%;
+            padding: 2%;
+        }
+    }
+}

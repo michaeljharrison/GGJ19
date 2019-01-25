@@ -1,4 +1,6 @@
 import React from 'react';
+import Particles from 'react-particles-js';
+import { OCEAN_PARTICLES } from '../models/Particles.js';
 // $FlowFixMe
 import './Ocean.scss';
 
@@ -20,9 +22,11 @@ export default class Ocean extends React.Component<Props, State> {
     let { stateMachine } = this.props;
     if (!stateMachine) stateMachine = {};
     return (
-      <div className="Ocean">
+      <div className="Ocean overlay">
         {' '}
-        <div className="state">Ocean</div>
+        <div className="water">
+          <Particles className="oceanParticles" params={OCEAN_PARTICLES} />
+        </div>
       </div>
     );
   }

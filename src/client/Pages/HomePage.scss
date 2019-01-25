@@ -6,6 +6,11 @@
     height: 100%;
     .gameView {
         background-color: $ocean-background-color;
-        flex-grow: 2;
+        width: 1980px;
+        height: 1080px;
+    }
+    .interface {
+        width: 1920px;
+        height: 300px;
     }
 }

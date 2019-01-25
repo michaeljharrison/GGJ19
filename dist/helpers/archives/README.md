@@ -1,1 +1,0 @@
-Proof Archives will be created and temporarily stored in this folder.

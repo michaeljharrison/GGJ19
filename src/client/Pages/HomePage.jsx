@@ -13,14 +13,10 @@ import {
 i18n
   .use(reactI18nextModule) // passes i18n down to react-i18next
   .init(CONFIG);
-
-type Props = {
-  t: any,
-};
 type State = {
   stateMachine: any,
 };
-class HomePage extends React.Component<Props, State> {
+class HomePage extends React.Component<any, State> {
   constructor() {
     super();
     this.state = {

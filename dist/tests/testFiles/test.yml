@@ -1,4 +1,0 @@
-tests:
-  name: yml Test
-  purpose: To test yml file manipulation.
-  version: 1

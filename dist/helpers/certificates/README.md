@@ -1,1 +1,0 @@
-Certificates will be created and temporarily stored in this folder.

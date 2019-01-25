@@ -6,7 +6,7 @@ import '../style/global_styles.scss';
 
 const Routes = () => (
   <Switch>
-    <Route exact path="/MeatTheCrew" component={HomePage} />
+    <Route exact path="/" component={HomePage} />
     <Route path="*" component={FourOhFour} />
   </Switch>
 );

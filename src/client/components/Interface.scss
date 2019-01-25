@@ -4,23 +4,50 @@
     flex-direction: column;
     background-color: $interface-background-color;
     justify-items: flex-end;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    padding-left: 10px;
+    padding-bottom: 16px;
+    padding-top: 30px;
+    padding-left: 16px;
     padding-right: 10px;
     .inputWrapper {
         order: 1;
+        height: 60px;
+        width: 1762px;
+        height: 120px;
+        margin-bottom: 16px;
+        .ant-input {
+            font-size: 24px;
+        }
     }
     .historyWrapper {
         order: 2;
+        width: 1762px;
+        height: 218px;
         display: flex;
         flex-direction: column;
         .history {
+            display: flex;
+            flex-direction: row;
             width: 100%;
             color: white;
             background: rgba(256, 256, 256, 0.2);
-            margin-top: 2%;
-            padding: 2%;
+            margin-top: 1%;
+            height: 60px;
+            justify-content: flex-start;
+            align-items: center;
+            padding-left: 2%;
+            font-size: 24px;
+            transition: all 0.3s;
+            transition-property: all;
+            transition-duration: 0.3s;
+            transition-timing-function: ease;
+            transition-delay: 0s;
+        }
+        .history.first {}
+        .history.second {
+            opacity: 0.5;
+        }
+        .history.third {
+            opacity: 0.25;
         }
     }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import i18n from 'i18next';
+import autobind from 'autobind-decorator';
 import { withI18n, reactI18nextModule } from 'react-i18next';
 import StateMachine from 'javascript-state-machine';
 import { CONFIG } from '../i18n.js';
@@ -15,6 +16,7 @@ i18n
   .init(CONFIG);
 type State = {
   stateMachine: any,
+  isNight: boolean,
 };
 class HomePage extends React.Component<any, State> {
   constructor() {
@@ -22,6 +24,7 @@ class HomePage extends React.Component<any, State> {
     this.state = {
       stateMachine: null,
       isReady: false,
+      isNight: false,
     };
   }
 
@@ -32,8 +35,14 @@ class HomePage extends React.Component<any, State> {
 
   componentWillReceiveProps() {}
 
+  @autobind
+  _toggleNight() {
+    const { isNight } = this.state;
+    this.setState({ isNight: !isNight });
+  }
+
   render() {
-    const { stateMachine, isReady } = this.state;
+    const { stateMachine, isReady, isNight } = this.state;
     if (!isReady) {
       return <div className="LoadingWrapper">LOADING</div>;
     }
@@ -41,11 +50,11 @@ class HomePage extends React.Component<any, State> {
       <div className="Page HomePage">
         <div className="gameView">
           <DebugInfo stateMachine={stateMachine} />
-          <Sky />
+          <Sky isNight={isNight} />
           <Boat />
           <Ocean />
         </div>
-        <Interface />
+        <Interface setNightCallback={this._toggleNight} />
       </div>
     );
   }

@@ -20,7 +20,7 @@ export default class Boat extends React.Component<Props, State> {
     let { stateMachine } = this.props;
     if (!stateMachine) stateMachine = {};
     return (
-      <div className="Boat">
+      <div className="Boat overlay">
         {' '}
         <div className="state">Boat</div>
       </div>

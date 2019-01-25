@@ -76,7 +76,7 @@ export default class Interface extends React.Component<Props, State> {
   }
 
   render() {
-    let { stateMachine } = this.props;
+    let { stateMachine, setNightCallback } = this.props;
     const { commandHistory, currentCommandInput } = this.state;
 
     console.log('Current State: ', commandHistory, currentCommandInput);
@@ -104,7 +104,13 @@ export default class Interface extends React.Component<Props, State> {
         <div className="interfaceRight">
           <Button>Menu</Button>
           <Button>Button2</Button>
-          <Button>Button3</Button>
+          <Button
+            onClick={() => {
+              setNightCallback();
+            }}
+          >
+            Night Light.
+          </Button>
         </div>
       </div>
     );

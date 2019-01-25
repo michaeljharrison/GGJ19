@@ -1,2 +1,10 @@
 @import "../style/global_colors.scss";
-.oceanWrapper {}
+.Ocean {
+    z-index: 100;
+    .water {
+        background: linear-gradient(#358c98, #32737d);
+        height: 30%;
+        margin-top: auto;
+    }
+    .oceanParticles {}
+}

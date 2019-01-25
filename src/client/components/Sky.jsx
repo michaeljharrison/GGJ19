@@ -26,20 +26,21 @@ export default class Sky extends React.Component<Props, State> {
       <div className="Sky overlay">
         {' '}
         <div className="bg_back overlay">
+          {' '}
           {isNight && (
             <div className="nightSky">
-              <Particles className="night" params={STAR_PARTICLES} />
+              {' '}
+              <Particles className="night" params={STAR_PARTICLES} />{' '}
             </div>
           )}
           {!isNight && (
             <div className="daySky">
-              <Particles className="day" params={DAY_PARTICLES} />
-              <Particles className="clouds" params={CLOUD_PARTICLES} />
+              {' '}
+              <Particles className="day" params={DAY_PARTICLES} /> <Particles className="clouds" params={CLOUD_PARTICLES} />{' '}
             </div>
           )}
-        </div>
-        <div className="bg_mid overlay" />
-        <div classNAme="bg_front overlay" />
+        </div>{' '}
+        <div className="bg_mid overlay" /> <div classNAme="bg_front overlay" />{' '}
       </div>
     );
   }

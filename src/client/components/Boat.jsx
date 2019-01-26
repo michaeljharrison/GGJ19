@@ -27,6 +27,7 @@ export default class Boat extends React.Component<Props, State> {
     return (
       <div className="Boat overlay">
         <img className="boatBG" src={BoatBG} alt="huh" />
+        <img className="crackers"
       </div>
     );
   }

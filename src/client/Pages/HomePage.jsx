@@ -52,6 +52,7 @@ class HomePage extends React.Component<any, State> {
         scenario: 0,
         currentRetries: 0,
         introFinished: false,
+        
       },
     };
   }

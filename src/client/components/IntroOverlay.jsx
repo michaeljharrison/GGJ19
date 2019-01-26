@@ -1,10 +1,10 @@
 import React from 'react';
 import autobind from 'autobind-decorator';
+import Splash from '../style/assets/splash.png';
 // $FlowFixMe
 import './IntroOverlay.scss';
 
-type Props = {
-};
+type Props = {};
 type State = {};
 export default class IntroOverlay extends React.Component<Props, State> {
   constructor() {
@@ -29,12 +29,8 @@ export default class IntroOverlay extends React.Component<Props, State> {
     if (!renderSelf) return <div />;
     return (
       <div className="IntroOverlay" onClick={this._startGame}>
-        <div className="title">
-              Meat the Crew
-        </div>
-        <div className="subtitle">
-              Click anywhere to set sail!
-        </div>
+        <img src={Splash} alt="nothnx" />
+        <div className="title">Click anywhere to set sail!</div>
       </div>
     );
   }

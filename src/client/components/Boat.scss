@@ -1,6 +1,15 @@
 @import "../style/global_colors.scss";
 .Boat {
     background-color: rgba(200, 200, 200, 0);
+<<<<<<< Updated upstream
+=======
+    z-index: 125;
+    animation-name: boatAnim;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    
+>>>>>>> Stashed changes
     .boatBG {
         height: 150%;
         z-index: 4;
@@ -8,3 +17,9 @@
 
     }
 }
+@keyframes boatAnim {
+    from {transform:rotate(-2deg);}
+    to {transform:rotate(2deg);}
+    0% {bottom: 0%;}
+    100% {bottom: -2%;}
+  }

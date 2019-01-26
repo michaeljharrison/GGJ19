@@ -43,7 +43,7 @@ class HomePage extends React.Component<any, State> {
         isSailing: true,
         isScenario: false,
         hasLost: false,
-        scenario: 0,
+        scenario: 1,
       },
     };
   }
@@ -57,11 +57,12 @@ class HomePage extends React.Component<any, State> {
   }
 
   @autobind
-  openNotificationWithIcon(type, message) {
-    notification[type]({
+  openNotificationWithIcon(type, message, title) {
+    notification.open({
+      message: title,
       description: message,
       placement: 'topLeft',
-      duration: 6,
+      duration: 8,
       style: {
         // left: -Math.floor(Math.random() * 500 + 250),
         // top: Math.floor(Math.random() * 250 + 25),
@@ -78,27 +79,27 @@ class HomePage extends React.Component<any, State> {
     console.log('INTERVAL: ', stateParams);
     console.log('CurrentState: ', stateMachine.state);
     if (stateMachine.state === 'sailing') {
-      console.log('New Scenario');
-      this.openNotificationWithIcon(NOTIFICATION_TYPES.WARNING, 'Something up ahead Captain!');
+      console.log('New Scenario!');
+      this.openNotificationWithIcon(NOTIFICATION_TYPES.WARNING, 'Something up ahead Captain!', 'Alert!');
       stateParams.inScenario = true;
       stateParams.isSailing = false;
       this.setState({ stateParams });
       switch (stateParams.scenario) {
-        case 0:
+        case 1:
           clearInterval(intervalId);
           stateMachine.toS1C1(this.openNotificationWithIcon);
           break;
-        case 1:
-          clearInterval(intervalId);
-          stateMachine.startScenario2(this.openNotificationWithIcon);
-          break;
         case 2:
           clearInterval(intervalId);
-          stateMachine.startScenario3(this.openNotificationWithIcon);
+          stateMachine.toS2C1(this.openNotificationWithIcon);
           break;
         case 3:
           clearInterval(intervalId);
-          stateMachine.startScenario4(this.openNotificationWithIcon);
+          stateMachine.toS3C1(this.openNotificationWithIcon);
+          break;
+        case 4:
+          clearInterval(intervalId);
+          stateMachine.toS4C1(this.openNotificationWithIcon);
           break;
         default:
           console.log('wtf');
@@ -122,11 +123,11 @@ class HomePage extends React.Component<any, State> {
     if (returnMessage.status === 'success') {
       const intervalId = setInterval(this._newScenario, 5000);
       this.state.intervalId = intervalId;
-      this.openNotificationWithIcon(NOTIFICATION_TYPES.SUCCESS, returnMessage.message);
+      this.openNotificationWithIcon(NOTIFICATION_TYPES.SUCCESS, returnMessage.message, returnMessage.title);
     } else if (returnMessage.status === 'confuse') {
-      this.openNotificationWithIcon(NOTIFICATION_TYPES.WARNING, returnMessage.message);
+      this.openNotificationWithIcon(NOTIFICATION_TYPES.WARNING, returnMessage.message, returnMessage.title);
     } else if (returnMessage.status === 'fail') {
-      this.openNotificationWithIcon(NOTIFICATION_TYPES.ERROR, returnMessage.message);
+      this.openNotificationWithIcon(NOTIFICATION_TYPES.ERROR, returnMessage.message, returnMessage.title);
     }
   }
 

@@ -9,21 +9,26 @@
         background: linear-gradient(#8FD5EB, #FFFFFF);
         width: 100%;
         overflow: hidden;
-      }
-        .day {
-            position: absolute;
-            z-index: 2;
-            width: 100%;
+    }
+    .day {
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+    }
+    .clouds {
+        z-index: 3;
+        position: absolute;
+    }
+    @keyframes sun {
+        0% {
+            left: -5%;
+            ;
         }
-        .clouds {
-            z-index: 3;
-            position: absolute;
+        100% {
+            left: 160%;
         }
-        @keyframes sun {
-        0% {left:-20%;;}
-        100% {left:160%;}
-        }
-        .sun {
+    }
+    .sun {
         width: 200px;
         height: 200px;
         position: relative;
@@ -31,6 +36,5 @@
         animation-duration: 500s;
         animation-iteration-count: infinite;
         animation-direction: alternate;
-        }
     }
 }

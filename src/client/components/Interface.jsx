@@ -1,6 +1,8 @@
 import React from 'react';
 import { Input, Button } from 'antd';
 import autobind from 'autobind-decorator';
+import ArrowUp from '../style/assets/ARROW_UP_DEFAULT.png';
+import ArrowDown from '../style/assets/ARROW_DOWN_DEFAULT.png';
 // $FlowFixMe
 import './Interface.scss';
 
@@ -91,14 +93,12 @@ export default class Interface extends React.Component<Props, State> {
           </div>
         </div>
         <div className="interfaceRight">
-          <Button>Menu</Button>
-          <Button>Button2</Button>
-          <Button
-            onClick={() => {
-              setNightCallback();
-            }}
-          >
-            Night Light.
+          <Button />
+          <Button>
+            <img src={ArrowUp} alt="?" />
+          </Button>
+          <Button>
+            <img src={ArrowDown} alt="?" />
           </Button>
         </div>
       </div>

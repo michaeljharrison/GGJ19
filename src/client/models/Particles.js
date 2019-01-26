@@ -337,10 +337,10 @@ export const DAY_PARTICLES = {
 export const CLOUD1_PARTICLES = {
   particles: {
     number: {
-      value: 25,
+      value: 3,
       density: {
         enable: true,
-        value_area: 1523.2414578222467,
+        value_area: 8000.2414578222467,
       },
     },
     color: {
@@ -372,7 +372,7 @@ export const CLOUD1_PARTICLES = {
       },
     },
     size: {
-      value: 108.23031410842279,
+      value: 300,
       random: true,
       anim: {
         enable: false,
@@ -448,10 +448,10 @@ export const CLOUD1_PARTICLES = {
 export const CLOUD2_PARTICLES = {
   particles: {
     number: {
-      value: 50,
+      value: 5,
       density: {
         enable: true,
-        value_area: 1523.2414578222467,
+        value_area: 8000.2414578222467,
       },
     },
     color: {
@@ -483,7 +483,7 @@ export const CLOUD2_PARTICLES = {
       },
     },
     size: {
-      value: 108.23031410842279,
+      value: 300.23031410842279,
       random: true,
       anim: {
         enable: false,
@@ -558,10 +558,10 @@ export const CLOUD2_PARTICLES = {
 export const CLOUD3_PARTICLES = {
   particles: {
     number: {
-      value: 50,
+      value: 5,
       density: {
         enable: true,
-        value_area: 1523.2414578222467,
+        value_area: 8000.2414578222467,
       },
     },
     color: {
@@ -593,7 +593,7 @@ export const CLOUD3_PARTICLES = {
       },
     },
     size: {
-      value: 108.23031410842279,
+      value: 200.23031410842279,
       random: true,
       anim: {
         enable: false,

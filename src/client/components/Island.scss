@@ -1,0 +1,12 @@
+@import "../style/global_colors.scss";
+.Island {
+    background-color: rgba(200, 200, 200, 0);
+    .islandBG {
+        
+        height: 90%;
+        z-index: 4;
+        margin-top: 12%;
+        max-height: 60%;
+        margin-left: 20%;
+    }
+}

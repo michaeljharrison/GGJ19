@@ -23,16 +23,20 @@ export const STATE_MACHINE = (openNotificationWithIcon: any) => {
   return {
     init: 'sailing',
     transitions: [
+      // START ENCOUNTER
+
       // S1
       { name: 'toS1C1', from: 'sailing', to: 'S1C1' },
       { name: 'toS1C1P', from: 'S1C1', to: 'sailing' },
       { name: 'toS1C1F', from: 'S1C1', to: 'sailing' },
-      // S4
+      // S2
       { name: 'toS2C1', from: 'sailing', to: 'S2C1' },
       { name: 'toS2C2', from: 'S2C1', to: 'S2C2' },
       { name: 'toS2C2Retry', from: 'S2C2', to: 'S2C2' },
       { name: 'toS2C2P', from: 'S2C2', to: 'sailing' },
       { name: 'toS2C2F', from: 'S2C2', to: 'sailing' },
+
+      // END ENCOUNTER
     ],
     methods: {
       onToS1C1() {

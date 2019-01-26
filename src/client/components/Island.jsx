@@ -1,7 +1,7 @@
 import React from 'react';
-import BoatBG from '../style/assets/BOAT.png';
+import IslandBG from '../style/assets/Island.png';
 // $FlowFixMe
-import './Boat.scss';
+import './Island.scss';
 
 type Props = {
   stateMachine: any,
@@ -9,7 +9,7 @@ type Props = {
 };
 type State = {};
 
-export default class Boat extends React.Component<Props, State> {
+export default class Island extends React.Component<Props, State> {
   constructor() {
     super();
     this.state = {};
@@ -25,8 +25,8 @@ export default class Boat extends React.Component<Props, State> {
     if (!stateMachine) stateMachine = {};
     if (!show) return <div />;
     return (
-      <div className="Boat overlay">
-        <img className="boatBG" src={BoatBG} alt="huh" />
+      <div className="Island overlay">
+        <img className="islandBG" src={IslandBG} alt="huh" />
       </div>
     );
   }

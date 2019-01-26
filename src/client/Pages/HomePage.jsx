@@ -10,7 +10,7 @@ import { CONFIG } from '../i18n.js';
 import './HomePage.scss';
 import { STATE_MACHINE } from '../models/StateMachine';
 import {
-  Interface, Boat, Sky, Ocean, DebugInfo,
+  Interface, Boat, Sky, Ocean, DebugInfo, IntroOverlay, Island
 } from '../components';
 
 const NOTIFICATION_TYPES = {
@@ -32,6 +32,7 @@ type State = {
   intervalID: any,
   isIntro: boolean,
   isOutro: boolean,
+  introComplete: boolean,
 };
 
 class HomePage extends React.Component<any, State> {
@@ -41,13 +42,14 @@ class HomePage extends React.Component<any, State> {
       stateMachine: null,
       isReady: false,
       isNight: false,
+      isIntro: true,
+      introComplete: false,
+      isOutro: false,
       stateParams: {
         isSailing: true,
         isScenario: false,
         hasLost: false,
         scenario: 1,
-        isIntro: true,
-        isOutro: false,
         currentRetries: 0,
       },
     };
@@ -56,9 +58,6 @@ class HomePage extends React.Component<any, State> {
   componentDidMount() {
     this.setState({ stateMachine: new StateMachine(STATE_MACHINE(this.openNotificationWithIcon))});
     this.setState({ isReady: true });
-    const intervalId = setInterval(this._newScenario, 5000);
-    // store intervalId in the state so it can be accessed later:
-    this.setState({ intervalId });
   }
 
   @autobind
@@ -76,6 +75,16 @@ class HomePage extends React.Component<any, State> {
     if (this.refs.interface) {
       this.refs.interface.addToHistory(message);
     }
+  }
+
+  @autobind
+  _startGame() {
+    console.log('Starting Game!');
+    const intervalId = setInterval(this._newScenario, 5000);
+    // store intervalId in the state so it can be accessed later:
+    this.state.intervalId = intervalId;
+    this.setState({isIntro: false})
+    this.state.isIntro = false;
   }
 
   @autobind
@@ -137,21 +146,23 @@ class HomePage extends React.Component<any, State> {
   }
 
   render() {
-    console.log('Rendering! (shouldnt happen much)')
     const { stateMachine, isReady, isNight, stateParams } = this.state;
-    const { isIntro, isOutro } = this.state;
+    const { isIntro, isOutro, introComplete } = this.state;
     if (!isReady) {
       return <div className="LoadingWrapper">LOADING</div>;
     }
+    console.log('Rendering! (shouldnt happen much):', isIntro);
     return (
       <div className="Page HomePage">
         <div className="gameView">
           <DebugInfo stateMachine={stateMachine} />
+          {isIntro && <IntroOverlay startGame={this._startGame}/>}
           <Sky isNight={isNight} />
-          <Boat />
+          <Boat show={!isIntro || isOutro}/>
+          <Island show={!introComplete}/>
           <Ocean />
         </div>
-        <Interface disabled={isIntro || isOutro} newInputCallback={this._newInput} setNightCallback={this._toggleNight} ref="interface" />
+        <Interface disabled={isIntro} newInputCallback={this._newInput} setNightCallback={this._toggleNight} ref="interface" />
       </div>
     );
   }

@@ -69,9 +69,10 @@ export default class Interface extends React.Component<Props, State> {
   }
 
   render() {
+    const { disabled } = this.props;
     let { stateMachine } = this.props;
     const { currentCommandInput } = this.state;
-
+    console.log('Interface Disabled: ', disabled);
     if (!stateMachine) stateMachine = {};
     return (
       <div className="interface">

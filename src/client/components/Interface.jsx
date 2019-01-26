@@ -8,8 +8,8 @@ import './Interface.scss';
 
 type Props = {
   stateMachine: any,
-  setNightCallback: any,
   newInputCallback: any,
+  disabled: boolean,
 };
 type State = {
   commandHistory: Array<string>,
@@ -31,15 +31,16 @@ export default class Interface extends React.Component<Props, State> {
 
   @autobind
   _handleInputChange(value: any) {
-    this.setState({ currentCommandInput: value.target.value });
+    const { disabled } = this.props;
+    if (!disabled) { this.setState({ currentCommandInput: value.target.value }); }
   }
 
   @autobind
   _handleEnterInput(value: any) {
-    const { newInputCallback } = this.props;
+    const { newInputCallback, disabled } = this.props;
     console.log('New input: ', value.target.value);
-    if (value.target.value.length === 0) {
-      console.log('Empty Input');
+    if (value.target.value.length === 0 || disabled) {
+      console.log('Empty Input or Disabled');
     } else {
       // Add to command history.
       const { commandHistory } = this.state;
@@ -64,11 +65,11 @@ export default class Interface extends React.Component<Props, State> {
   addToHistory(message: string) {
     const { commandHistory } = this.state;
     commandHistory.unshift(<span className="crewMessage">{message}</span>);
+    this.forceUpdate();
   }
 
   render() {
     let { stateMachine } = this.props;
-    const { setNightCallback } = this.props;
     const { currentCommandInput } = this.state;
 
     if (!stateMachine) stateMachine = {};

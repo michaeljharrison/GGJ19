@@ -37,11 +37,21 @@ const handleScenario2Input = (stateMachine: any, params: Object, input: string) 
       ) {
         stateMachine.toS2C2P();
         params.scenario += 1;
+        params.currentRetries = 0;
         return { status: 'success', message: 'She understand your disgusting slang.', title: 'Yukky.' };
       }
-      stateMachine.toS2C2F();
-      params.scenario += 1;
-      return { status: 'success', message: "She doesn't seem to understand english.", title: 'Millenials.' };
+      // Failure, check retries
+      params.currentRetries += 1;
+      if (params.currentRetries > 2) {
+        params.currentRetries = 0;
+        stateMachine.toS2C2F();
+        params.scenario += 1;
+        return { status: 'failure', message: "She doesn't seem to understand english.", title: '#Millenials.' };
+      }
+      stateMachine.toS2C2Retry();
+      return { status: 'failure', message: "She doesn't seem to understand english.", title: '#Millenials.' };
+
+
     default:
       return { status: 'confuse', message: 'Lolwut (this should enver happen)?' };
   }

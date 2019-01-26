@@ -25,6 +25,7 @@
                         .ant-input {
                             font-size: 24px;
                             height: 100%;
+                            background-image: url(../style/assets/UI_TEXTENTRY.svg);
                         }
                     }
                 }
@@ -38,6 +39,7 @@
             flex-direction: column;
             background: rgba(256, 256, 256, 0.2);
             overflow-y: scroll;
+            background-image: url(../style/assets/UI_LOG.svg);
             .history {
                 display: flex;
                 flex-direction: row;

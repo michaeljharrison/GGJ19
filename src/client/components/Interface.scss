@@ -53,25 +53,18 @@
                     display: flex;
                     flex-direction: row;
                     width: 100%;
-                    color: white;
-                    margin-top: 1%;
-                    min-height: 60px;
+                    color: rgba(50, 50, 50, 1);
+                    min-height: 50px;
                     justify-content: flex-start;
                     align-items: center;
                     padding-left: 2%;
-                    font-size: 24px;
+                    font-size: 28px;
                     transition: all 0.3s;
                     transition-property: all;
                     transition-duration: 0.3s;
                     transition-timing-function: ease;
                     transition-delay: 0s;
-                }
-                .history.first {}
-                .history.second {
-                    opacity: 0.5;
-                }
-                .history.third {
-                    opacity: 0.25;
+                    opacity: 0.75;
                 }
             }
         }

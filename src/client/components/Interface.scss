@@ -2,8 +2,9 @@
 .interface {
     display: flex;
     flex-direction: row;
-    background-color: $interface-background-color;
+    background-color: #838796;
     padding-bottom: 16px;
+    border: 6 px solid #9B9DAD;
     padding-top: 30px;
     padding-left: 16px;
     padding-right: 10px;
@@ -16,54 +17,62 @@
             width: 100%;
             height: 30%;
             margin-bottom: 16px;
-            .ant-input-group-wrapper {
+            .ant-input-affix-wrapper {
                 height: 100%;
-                .ant-input-group {
+                padding: 5px;
+                background-color: #D3BF8F;
+                border-radius: 6px;
+                .ant-input {
+                    font-size: 24px;
+                    border: 6px solid #97714A;
                     height: 100%;
-                    .ant-input-affix-wrapper {
-                        height: 100%;
-                        .ant-input {
-                            font-size: 24px;
-                            height: 100%;
-                            background-image: url(../style/assets/UI_TEXTENTRY.svg);
-                        }
-                    }
+                    background-color: #D3BF8F;
+                    border-radius: 6px;
                 }
             }
         }
-        .historyWrapper {
+        .historyWrapperOuter {
+            background-color: #ECE3CE;
             order: 2;
             width: 100%;
             height: 63%;
             display: flex;
             flex-direction: column;
             background: rgba(256, 256, 256, 0.2);
-            overflow-y: scroll;
-            background-image: url(../style/assets/UI_LOG.svg);
-            .history {
+            border-radius: 6px;
+            background-color: #ECE3CE;
+            padding: 5px;
+            .historyWrapper {
                 display: flex;
-                flex-direction: row;
-                width: 100%;
-                color: white;
-                background: rgba(256, 256, 256, 0.5);
-                margin-top: 1%;
-                min-height: 60px;
-                justify-content: flex-start;
-                align-items: center;
-                padding-left: 2%;
-                font-size: 24px;
-                transition: all 0.3s;
-                transition-property: all;
-                transition-duration: 0.3s;
-                transition-timing-function: ease;
-                transition-delay: 0s;
-            }
-            .history.first {}
-            .history.second {
-                opacity: 0.5;
-            }
-            .history.third {
-                opacity: 0.25;
+                flex-direction: column;
+                overflow-y: scroll;
+                border-radius: 6px;
+                background-color: #ECE3CE;
+                border: 6px solid #D3BF8F;
+                .history {
+                    display: flex;
+                    flex-direction: row;
+                    width: 100%;
+                    color: white;
+                    margin-top: 1%;
+                    min-height: 60px;
+                    justify-content: flex-start;
+                    align-items: center;
+                    padding-left: 2%;
+                    font-size: 24px;
+                    transition: all 0.3s;
+                    transition-property: all;
+                    transition-duration: 0.3s;
+                    transition-timing-function: ease;
+                    transition-delay: 0s;
+                }
+                .history.first {}
+                .history.second {
+                    opacity: 0.5;
+                }
+                .history.third {
+                    opacity: 0.25;
+                }
             }
         }
     }
@@ -73,6 +82,9 @@
         flex-direction: column;
         justify-content: space-between;
         .ant-btn {
+            flex-grow: 1;
+            margin-top: 5px;
+            margin-bottom: 5px;
             span {
                 color: black;
             }

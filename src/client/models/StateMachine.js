@@ -38,7 +38,7 @@ export const STATE_MACHINE = (openNotificationWithIcon: any) => {
       onToS1C1() {
         openNotificationWithIcon(
           NOTIFICATION_TYPES.WARNING,
-          'You arrive on an island. There is a chicken, a wolf and a large corn cob. You reckon you can only grab one item at a time. What do you grab first',
+          'You arrive on an island. There is a chicken, a wolf and a large corn cob. You reckon you can only grab one item at a time. What do you grab first'
           , 'Puzzling.'
           );
       },
@@ -47,7 +47,7 @@ export const STATE_MACHINE = (openNotificationWithIcon: any) => {
         openNotificationWithIcon(
           NOTIFICATION_TYPES.WARNING,
           'Chicken flies off boat. Chickens can fly, who knew? Wolf gets distracted and runs away. Yo utake the corn. Wow! Corn is a man. How exciting.',
-          , 'Exciting!'
+          'Exciting!'
           );
       },
       onToS1C1F() {
@@ -55,21 +55,21 @@ export const STATE_MACHINE = (openNotificationWithIcon: any) => {
         openNotificationWithIcon(
           NOTIFICATION_TYPES.WARNING,
           'Chicken pecks at corn. You hear cries of agony, theres blood everwhere. You didnt notice Corn was a (Corn) Man. You monster! Wolf theb murders Chicken. Corn Man is dead.',
-          , 'Wat?'
+           'Wat?'
           );
       },
       onToS2C1() {
         openNotificationWithIcon(
           NOTIFICATION_TYPES.WARNING,
           'You arrive on an island. There is a girl fixated on her phone. She does not look up as you approach',
-          , 'Encounter II'
+           'Encounter II'
           );
       },
       onToS2C2() {
         openNotificationWithIcon(
           NOTIFICATION_TYPES.WARNING,
           'lol wot? She looks quizzical. Glasses, coloured hair and an adversion to hard labour? Perhaps she is one of those mythical millenials you have heard of. (maybe you should speak to her in a way she understands) ',
-          , 'No Hables Ingles'
+           'No Hables Ingles'
           );
       },
       onToS2C2Retry() {

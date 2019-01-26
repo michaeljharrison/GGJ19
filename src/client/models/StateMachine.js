@@ -11,8 +11,8 @@ const openNotificationWithIcon = (type, message) => {
   notification.open({
     message: 'Captain!',
     description: message,
-    placement: 'topRight',
-    duration: 24,
+    placement: 'topLeft',
+    duration: 0,
     style: {
       //  left: -Math.floor(Math.random() * 500 + 250),
       //  top: Math.floor(Math.random() * 250 + 25),
@@ -34,6 +34,7 @@ export const STATE_MACHINE = {
   ],
   methods: {
     onToS1C1() {
+      console.log('THis works');
       openNotificationWithIcon(
         NOTIFICATION_TYPES.WARNING,
         'You arrive on an island. There is a chicken, a wolf and a large corn cob. You reckon you can only grab one item at a time. What do you grab first',

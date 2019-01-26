@@ -25,6 +25,13 @@ span {
 }
 
 .ant-notification-notice {
+    max-width: 400px;
+    background-color: #ECE3CE;
+    padding: 0px 15px 0px 15px;
+    border-style: double;
+    border-color: #D3BF8F;
+    box-shadow: 5px 5px 30px 0px rgba(0, 0, 0, 0.3);
+    padding-top: 15px;
     .ant-notification-notice-message {
         font-family: "Aladin", Serif;
         font-size: 26px;
@@ -35,16 +42,6 @@ span {
         text-align: justify;
         text-justify: inter-word;
     }
-    max-width: 400px;
-    background-color: #ECE3CE;
-    padding: 0px 15px 0px 15px;
-    border-style: double;
-    border-color: #D3BF8F;
-    box-shadow: 5px 5px 30px 0px rgba(0,
-    0,
-    0,
-    0.3);
-    padding-top: 15px;
     .ant-notification-notice-message {}
     .ant-notification-notice-close {
         width: 30px;

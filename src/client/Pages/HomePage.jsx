@@ -62,7 +62,7 @@ class HomePage extends React.Component<any, State> {
       message: title,
       description: message,
       placement: 'topLeft',
-      duration: 8,
+      duration: 4,
       style: {
         // left: -Math.floor(Math.random() * 500 + 250),
         // top: Math.floor(Math.random() * 250 + 25),
@@ -84,6 +84,7 @@ class HomePage extends React.Component<any, State> {
       stateParams.inScenario = true;
       stateParams.isSailing = false;
       this.setState({ stateParams });
+      console.log('This should say 1!', stateParams.scenario);
       switch (stateParams.scenario) {
         case 1:
           clearInterval(intervalId);

@@ -29,6 +29,9 @@
                     background-color: #D3BF8F;
                     border-radius: 6px;
                 }
+                .ant-input::placeholder {
+                    color: rgba(0, 0, 0, 0.5)
+                }
             }
         }
         .historyWrapperOuter {

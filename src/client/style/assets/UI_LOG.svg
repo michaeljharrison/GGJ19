@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1762" height="218" viewBox="0 0 1762 218">
+  <defs>
+    <clipPath id="clip-UI_LOG">
+      <rect width="1762" height="218"/>
+    </clipPath>
+  </defs>
+  <g id="UI_LOG" clip-path="url(#clip-UI_LOG)">
+    <rect width="1762" height="218" fill="#fff"/>
+    <g id="UI_TEXTENTRY">
+      <g id="bg_back" fill="#d3bf8f" stroke="#ece3ce" stroke-width="6">
+        <rect width="1762" height="218" rx="11" stroke="none"/>
+        <rect x="3" y="3" width="1756" height="212" rx="8" fill="none"/>
+      </g>
+      <rect id="bg_back-2" data-name="bg_back" width="1736" height="190" transform="translate(13 14)" fill="#ece3ce"/>
+      <g id="Group_2" data-name="Group 2" transform="translate(1752 207.333) rotate(180)">
+        <path id="Path_1" data-name="Path 1" d="M27,12.333l11.667,6,12.333-6Z" transform="translate(-10 -11.333)" fill="#d3bf8f"/>
+        <path id="Path_2" data-name="Path 2" d="M27,12.333l11.667,6,12.333-6Z" transform="translate(565 -9.333)" fill="#d3bf8f"/>
+        <path id="Path_3" data-name="Path 3" d="M27,12.333l11.667,6,12.333-6Z" transform="translate(1191 -12.333)" fill="#d3bf8f"/>
+        <path id="Path_4" data-name="Path 4" d="M27,12.333l11.667,6,12.333-6Z" transform="translate(1613 -9.333)" fill="#d3bf8f"/>
+        <path id="Path_5" data-name="Path 5" d="M0,0,11.667,6,24,0Z" transform="translate(1742 113.892) rotate(90)" fill="#d3bf8f"/>
+        <path id="Path_6" data-name="Path 6" d="M0,0,11.667,6,24,0Z" transform="translate(1725 193) rotate(180)" fill="#d3bf8f"/>
+        <path id="Path_7" data-name="Path 7" d="M0,0,11.667,6,24,0Z" transform="translate(1507 196) rotate(180)" fill="#d3bf8f"/>
+        <path id="Path_8" data-name="Path 8" d="M0,0,11.667,6,24,0Z" transform="translate(1227 193) rotate(180)" fill="#d3bf8f"/>
+        <path id="Path_9" data-name="Path 9" d="M0,0,11.667,6,24,0Z" transform="translate(815 196) rotate(180)" fill="#d3bf8f"/>
+        <path id="Path_10" data-name="Path 10" d="M0,0,11.667,6,24,0Z" transform="translate(496 193) rotate(180)" fill="#d3bf8f"/>
+        <path id="Path_11" data-name="Path 11" d="M0,0,11.667,6,24,0Z" transform="translate(108 196) rotate(180)" fill="#d3bf8f"/>
+        <path id="Path_12" data-name="Path 12" d="M0,0,11.667,6,24,0Z" transform="translate(0 161.135) rotate(-90)" fill="#d3bf8f"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -6,8 +6,9 @@
     }
     .daySky {
         z-index: 1;
-        background: linear-gradient(#7ca6c2, #7c97bf);
+        background: linear-gradient(#8FD5EB, #FFFFFF);
         width: 100%;
+      }
         .day {
             position: absolute;
             z-index: 2;
@@ -16,6 +17,19 @@
         .clouds {
             z-index: 3;
             position: absolute;
+        }
+        @keyframes sun {
+        0% {left:-20%;;}
+        100% {left:160%;}
+        }
+        .sun {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        animation-name: sun;
+        animation-duration: 500s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
         }
     }
 }

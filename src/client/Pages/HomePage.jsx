@@ -74,7 +74,7 @@ class HomePage extends React.Component<any, State> {
     });
     if (this.refs.interface) {
       this.refs.interface.addToHistory(message);
-    }
+    }4
   }
 
   @autobind
@@ -107,7 +107,7 @@ class HomePage extends React.Component<any, State> {
       return;
       return;
     }
-    
+
     console.log('INTERVAL: ', stateParams);
     console.log('CurrentState: ', stateMachine.state);
     if (stateMachine.state === 'sailing') {

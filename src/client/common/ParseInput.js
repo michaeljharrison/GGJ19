@@ -36,6 +36,7 @@ const handleScenario2Input = (stateMachine: any, params: Object, input: string) 
         || input.toLowerCase().match('lol')
         || input.toLowerCase().match('yolo')
         || input.toLowerCase().match('yeet')
+        || input.toLowerCase().match('fam')
       ) {
         stateMachine.toS2C2P();
         params.scenario += 1;

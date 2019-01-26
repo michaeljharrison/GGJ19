@@ -30,6 +30,8 @@ type State = {
   isReady: boolean,
   stateParams: Object,
   intervalID: any,
+  isIntro: boolean,
+  isOutro: boolean,
 };
 
 class HomePage extends React.Component<any, State> {
@@ -44,12 +46,15 @@ class HomePage extends React.Component<any, State> {
         isScenario: false,
         hasLost: false,
         scenario: 1,
+        isIntro: true,
+        isOutro: false,
+        currentRetries: 0,
       },
     };
   }
 
   componentDidMount() {
-    this.setState({ stateMachine: new StateMachine(STATE_MACHINE) });
+    this.setState({ stateMachine: new StateMachine(STATE_MACHINE(this.openNotificationWithIcon))});
     this.setState({ isReady: true });
     const intervalId = setInterval(this._newScenario, 5000);
     // store intervalId in the state so it can be accessed later:
@@ -83,7 +88,6 @@ class HomePage extends React.Component<any, State> {
       this.openNotificationWithIcon(NOTIFICATION_TYPES.WARNING, 'Something up ahead Captain!', 'Alert!');
       stateParams.inScenario = true;
       stateParams.isSailing = false;
-      this.setState({ stateParams });
       console.log('This should say 1!', stateParams.scenario);
       switch (stateParams.scenario) {
         case 1:
@@ -133,7 +137,9 @@ class HomePage extends React.Component<any, State> {
   }
 
   render() {
-    const { stateMachine, isReady, isNight } = this.state;
+    console.log('Rendering! (shouldnt happen much)')
+    const { stateMachine, isReady, isNight, stateParams } = this.state;
+    const { isIntro, isOutro } = this.state;
     if (!isReady) {
       return <div className="LoadingWrapper">LOADING</div>;
     }
@@ -145,7 +151,7 @@ class HomePage extends React.Component<any, State> {
           <Boat />
           <Ocean />
         </div>
-        <Interface newInputCallback={this._newInput} setNightCallback={this._toggleNight} ref="interface" />
+        <Interface disabled={isIntro || isOutro} newInputCallback={this._newInput} setNightCallback={this._toggleNight} ref="interface" />
       </div>
     );
   }

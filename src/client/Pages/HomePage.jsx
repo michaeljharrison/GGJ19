@@ -25,18 +25,25 @@ const openNotificationWithIcon = (type, message) => {
     message: 'Yarrr!',
     description: message,
     duration: 8,
+    style: {
+      left: -Math.floor(Math.random() * 500 + 250),
+      top: Math.floor(Math.random() * 500 + 250),
+    },
   });
 };
 
 i18n
   .use(reactI18nextModule) // passes i18n down to react-i18next
   .init(CONFIG);
+
 type State = {
   stateMachine: any,
   isNight: boolean,
   isReady: boolean,
   stateParams: Object,
+  intervalID: any,
 };
+
 class HomePage extends React.Component<any, State> {
   constructor() {
     super();
@@ -44,13 +51,53 @@ class HomePage extends React.Component<any, State> {
       stateMachine: null,
       isReady: false,
       isNight: false,
-      stateParams: {},
+      stateParams: {
+        isSailing: true,
+        isScenario: false,
+        hasLost: false,
+        scenario: 0,
+      },
     };
   }
 
   componentDidMount() {
     this.setState({ stateMachine: new StateMachine(STATE_MACHINE) });
     this.setState({ isReady: true });
+    const intervalId = setInterval(this._newScenario, 3000);
+    // store intervalId in the state so it can be accessed later:
+    this.setState({ intervalId });
+  }
+
+  @autobind
+  _newScenario() {
+    console.log('INTERVAL!');
+    const { stateParams, stateMachine } = this.state;
+    if (stateParams.isSailing) {
+      console.log('New Scenario');
+      openNotificationWithIcon(NOTIFICATION_TYPES.WARNING, 'Something up ahead Captain!');
+      stateParams.inScenario = true;
+      stateParams.isSailing = false;
+      this.setState({ stateParams });
+      switch (stateParams.scenario) {
+        case 0:
+          stateMachine.startScenario1();
+          break;
+        case 1:
+          stateMachine.startScenario2();
+          break;
+        case 2:
+          stateMachine.startScenario3();
+          break;
+        case 3:
+          stateMachine.startScenario4();
+          break;
+        default:
+          console.log('wtf');
+          break;
+      }
+    } else {
+      // Do nothing until scenario is solved.
+    }
   }
 
   @autobind
@@ -62,9 +109,8 @@ class HomePage extends React.Component<any, State> {
   @autobind
   _newInput(input) {
     const { stateParams, stateMachine } = this.state;
-    parseInput(stateMachine, stateParams);
-    openNotificationWithIcon(NOTIFICATION_TYPES.SUCCESS, input);
-    // Check stateParams to determine a transition:
+    const returnMessage = parseInput(stateMachine, stateParams, input);
+    openNotificationWithIcon(NOTIFICATION_TYPES.SUCCESS, returnMessage);
   }
 
   render() {

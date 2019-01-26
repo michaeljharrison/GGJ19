@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input, Button } from 'antd';
 import autobind from 'autobind-decorator';
+import UiTextEntry from '../style/assets/UI_TEXTENTRY.svg';
 // $FlowFixMe
 import './Interface.scss';
 
@@ -18,7 +19,7 @@ export default class Interface extends React.Component<Props, State> {
   constructor() {
     super();
     this.state = {
-      commandHistory: ['', '', ''],
+      commandHistory: ['', '', '', '', ''],
       currentCommandInput: '',
     };
   }
@@ -69,7 +70,6 @@ export default class Interface extends React.Component<Props, State> {
         <div className="interfaceLeft">
           <div className="inputWrapper">
             <Input
-              addonBefore={<div className="inputBefore"> :) </div>}
               placeholder="Input your command here!"
               value={currentCommandInput}
               onPressEnter={(value) => {
@@ -81,7 +81,9 @@ export default class Interface extends React.Component<Props, State> {
               allowClear
             />
           </div>
-          <div className="historyWrapper">{this._renderCommandHistory()}</div>
+          <div className="historyWrapperOuter">
+            <div className="historyWrapper">{this._renderCommandHistory()}</div>
+          </div>
         </div>
         <div className="interfaceRight">
           <Button>Menu</Button>

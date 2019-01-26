@@ -1,10 +1,10 @@
 import React from 'react';
 import i18n from 'i18next';
-import { notifcation } from 'antd';
+import { notification } from 'antd';
 import autobind from 'autobind-decorator';
 import { withI18n, reactI18nextModule } from 'react-i18next';
 import StateMachine from 'javascript-state-machine';
-import { parseInput } from '../common/ParseInput';
+import { parseInput } from '../common/ParseInput.js';
 import { CONFIG } from '../i18n.js';
 // $FlowFixMe
 import './HomePage.scss';
@@ -20,10 +20,10 @@ const NOTIFICATION_TYPES = {
   ERROR: 'error',
 };
 
-const openNotificationWithIcon = (type) => {
+const openNotificationWithIcon = (type, message) => {
   notification[type]({
     message: 'Yarrr!',
-    description: 'This be my response to yer question.',
+    description: message,
     duration: 8,
   });
 };
@@ -61,8 +61,9 @@ class HomePage extends React.Component<any, State> {
 
   @autobind
   _newInput(input) {
-    parseInput(stateMachine.state);
-    const { stateParams } = this.state;
+    const { stateParams, stateMachine } = this.state;
+    parseInput(stateMachine, stateParams);
+    openNotificationWithIcon(NOTIFICATION_TYPES.SUCCESS, input);
     // Check stateParams to determine a transition:
   }
 

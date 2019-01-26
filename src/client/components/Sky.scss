@@ -7,9 +7,11 @@
     .daySky {
         z-index: 1;
         background: linear-gradient(#7ca6c2, #7c97bf);
+        width: 100%;
         .day {
             position: absolute;
             z-index: 2;
+            width: 100%;
         }
         .clouds {
             z-index: 3;

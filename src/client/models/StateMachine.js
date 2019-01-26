@@ -1,22 +1,8 @@
-import { notification } from 'antd';
-
 const NOTIFICATION_TYPES = {
   SUCCESS: 'success',
   WARNING: 'warning',
   INFO: 'info',
   ERROR: 'error',
-};
-
-const openNotificationWithIcon = (type, message) => {
-  notification[type]({
-    message: 'Yarrr!',
-    description: message,
-    duration: 8,
-    style: {
-      left: -Math.floor(Math.random() * 500 + 250),
-      top: Math.floor(Math.random() * 500 + 250),
-    },
-  });
 };
 
 export const STATE_MACHINE = {
@@ -32,9 +18,10 @@ export const STATE_MACHINE = {
     { name: 'endScenario4', from: 'scenario4', to: 'sailing' },
   ],
   methods: {
-    onStartScenario1() {
-      openNotificationWithIcon(NOTIFICATION_TYPES.WARNING, 'Scenario 1 starting text here!');
-    },
     onEndScenario1() {},
+    onStartScenario2() {},
+    onEndScenario2() {},
+    onStartScenario3() {},
+    onEndScenario3() {},
   },
 };

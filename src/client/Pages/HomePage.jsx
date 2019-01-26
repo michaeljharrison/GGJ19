@@ -20,18 +20,6 @@ const NOTIFICATION_TYPES = {
   ERROR: 'error',
 };
 
-const openNotificationWithIcon = (type, message) => {
-  notification[type]({
-    message: 'Yarrr!',
-    description: message,
-    duration: 8,
-    style: {
-      left: -Math.floor(Math.random() * 500 + 250),
-      top: Math.floor(Math.random() * 500 + 250),
-    },
-  });
-};
-
 i18n
   .use(reactI18nextModule) // passes i18n down to react-i18next
   .init(CONFIG);
@@ -63,33 +51,54 @@ class HomePage extends React.Component<any, State> {
   componentDidMount() {
     this.setState({ stateMachine: new StateMachine(STATE_MACHINE) });
     this.setState({ isReady: true });
-    const intervalId = setInterval(this._newScenario, 3000);
+    const intervalId = setInterval(this._newScenario, 5000);
     // store intervalId in the state so it can be accessed later:
     this.setState({ intervalId });
   }
 
   @autobind
+  openNotificationWithIcon(type, message) {
+    notification[type]({
+      message: 'Yarrr!',
+      description: message,
+      duration: 8,
+      style: {
+        left: -Math.floor(Math.random() * 500 + 250),
+        top: Math.floor(Math.random() * 500 + 250),
+      },
+    });
+    if (this.refs.interface) {
+      this.refs.interface.addToHistory(message);
+    }
+  }
+
+  @autobind
   _newScenario() {
-    console.log('INTERVAL!');
-    const { stateParams, stateMachine } = this.state;
-    if (stateParams.isSailing) {
+    const { stateParams, stateMachine, intervalId } = this.state;
+    console.log('INTERVAL: ', stateParams);
+    console.log('CurrentState: ', stateMachine.state);
+    if (stateMachine.state === 'sailing') {
       console.log('New Scenario');
-      openNotificationWithIcon(NOTIFICATION_TYPES.WARNING, 'Something up ahead Captain!');
+      this.openNotificationWithIcon(NOTIFICATION_TYPES.WARNING, 'Something up ahead Captain!');
       stateParams.inScenario = true;
       stateParams.isSailing = false;
       this.setState({ stateParams });
       switch (stateParams.scenario) {
         case 0:
-          stateMachine.startScenario1();
+          clearInterval(intervalId);
+          stateMachine.startScenario1(this.openNotificationWithIcon);
           break;
         case 1:
-          stateMachine.startScenario2();
+          clearInterval(intervalId);
+          stateMachine.startScenario2(this.openNotificationWithIcon);
           break;
         case 2:
-          stateMachine.startScenario3();
+          clearInterval(intervalId);
+          stateMachine.startScenario3(this.openNotificationWithIcon);
           break;
         case 3:
-          stateMachine.startScenario4();
+          clearInterval(intervalId);
+          stateMachine.startScenario4(this.openNotificationWithIcon);
           break;
         default:
           console.log('wtf');
@@ -109,8 +118,12 @@ class HomePage extends React.Component<any, State> {
   @autobind
   _newInput(input) {
     const { stateParams, stateMachine } = this.state;
-    const returnMessage = parseInput(stateMachine, stateParams, input);
-    openNotificationWithIcon(NOTIFICATION_TYPES.SUCCESS, returnMessage);
+    const returnMessage = parseInput(stateMachine, stateParams, input, this.openNotificationWithIcon);
+    if (returnMessage) {
+      const intervalId = setInterval(this._newScenario, 5000);
+      this.state.intervalId = intervalId;
+    }
+    this.openNotificationWithIcon(NOTIFICATION_TYPES.SUCCESS, returnMessage);
   }
 
   render() {
@@ -126,7 +139,7 @@ class HomePage extends React.Component<any, State> {
           <Boat />
           <Ocean />
         </div>
-        <Interface newInputCallback={this._newInput} setNightCallback={this._toggleNight} />
+        <Interface newInputCallback={this._newInput} setNightCallback={this._toggleNight} ref="interface" />
       </div>
     );
   }

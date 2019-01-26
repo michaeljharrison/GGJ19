@@ -1,7 +1,6 @@
 import React from 'react';
 import { Input, Button } from 'antd';
 import autobind from 'autobind-decorator';
-import UiTextEntry from '../style/assets/UI_TEXTENTRY.svg';
 // $FlowFixMe
 import './Interface.scss';
 
@@ -57,12 +56,16 @@ export default class Interface extends React.Component<Props, State> {
     return array;
   }
 
+  @autobind
+  addToHistory(message: string) {
+    const { commandHistory } = this.state;
+    commandHistory.unshift(<span className="crewMessage">{message}</span>);
+  }
+
   render() {
     let { stateMachine } = this.props;
     const { setNightCallback } = this.props;
-    const { commandHistory, currentCommandInput } = this.state;
-
-    console.log('Current State: ', commandHistory, currentCommandInput);
+    const { currentCommandInput } = this.state;
 
     if (!stateMachine) stateMachine = {};
     return (

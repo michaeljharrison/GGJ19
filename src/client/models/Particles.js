@@ -1,3 +1,7 @@
+import Cloud from '../style/assets/Cloud_1.png';
+import CloudTwo from '../style/assets/Cloud_2.png';
+import CloudThree from '../style/assets/Cloud_3.png';
+
 export const STAR_PARTICLES = {
   particles: {
     number: {
@@ -112,7 +116,7 @@ export const STAR_PARTICLES = {
 export const OCEAN_PARTICLES = {
   particles: {
     number: {
-      value: 80,
+      value: 25,
       density: {
         enable: true,
         value_area: 800,
@@ -223,7 +227,7 @@ export const OCEAN_PARTICLES = {
 export const DAY_PARTICLES = {
   particles: {
     number: {
-      value: 20,
+      value: 25,
       density: {
         enable: true,
         value_area: 2164.606282168456,
@@ -330,7 +334,118 @@ export const DAY_PARTICLES = {
   },
   retina_detect: true,
 };
-export const CLOUD_PARTICLES = {
+export const CLOUD1_PARTICLES = {
+  particles: {
+    number: {
+      value: 25,
+      density: {
+        enable: true,
+        value_area: 1523.2414578222467,
+      },
+    },
+    color: {
+      value: '#dbdaf0',
+    },
+    shape: {
+      type: 'image',
+      stroke: {
+        width: 5,
+        color: '#ffffff',
+      },
+      polygon: {
+        nb_sides: 10,
+      },
+      image: {
+        src: Cloud,
+        width: 385,
+        height: 253,
+      },
+    },
+    opacity: {
+      value: 1,
+      random: true,
+      anim: {
+        enable: false,
+        speed: 1,
+        opacity_min: 0.1,
+        sync: false,
+      },
+    },
+    size: {
+      value: 108.23031410842279,
+      random: true,
+      anim: {
+        enable: false,
+        speed: 40,
+        size_min: 0.1,
+        sync: false,
+      },
+    },
+    line_linked: {
+      enable: false,
+      distance: 150,
+      color: '#ffffff',
+      opacity: 1,
+      width: 1,
+    },
+    move: {
+      enable: true,
+      speed: 0.25,
+      direction: 'right',
+      random: false,
+      straight: true,
+      out_mode: 'out',
+      bounce: false,
+      attract: {
+        enable: false,
+        rotateX: 600,
+        rotateY: 1200,
+      },
+    },
+  },
+  interactivity: {
+    detect_on: 'canvas',
+    events: {
+      onhover: {
+        enable: false,
+        mode: 'repulse',
+      },
+      onclick: {
+        enable: false,
+        mode: 'repulse',
+      },
+      resize: true,
+    },
+    modes: {
+      grab: {
+        distance: 400,
+        line_linked: {
+          opacity: 1,
+        },
+      },
+      bubble: {
+        distance: 400,
+        size: 40,
+        duration: 2,
+        opacity: 8,
+        speed: 3,
+      },
+      repulse: {
+        distance: 200,
+        duration: 0.4,
+      },
+      push: {
+        particles_nb: 4,
+      },
+      remove: {
+        particles_nb: 2,
+      },
+    },
+  },
+  retina_detect: true,
+};
+
+export const CLOUD2_PARTICLES = {
   particles: {
     number: {
       value: 50,
@@ -343,7 +458,7 @@ export const CLOUD_PARTICLES = {
       value: '#dbdaf0',
     },
     shape: {
-      type: 'polygon',
+      type: 'image',
       stroke: {
         width: 5,
         color: '#ffffff',
@@ -352,9 +467,119 @@ export const CLOUD_PARTICLES = {
         nb_sides: 10,
       },
       image: {
-        src: 'img/github.svg',
-        width: 100,
-        height: 100,
+        src: CloudTwo,
+        width: 385,
+        height: 253,
+      },
+    },
+    opacity: {
+      value: 1,
+      random: true,
+      anim: {
+        enable: false,
+        speed: 1,
+        opacity_min: 0.1,
+        sync: false,
+      },
+    },
+    size: {
+      value: 108.23031410842279,
+      random: true,
+      anim: {
+        enable: false,
+        speed: 40,
+        size_min: 0.1,
+        sync: false,
+      },
+    },
+    line_linked: {
+      enable: false,
+      distance: 150,
+      color: '#ffffff',
+      opacity: 1,
+      width: 1,
+    },
+    move: {
+      enable: true,
+      speed: 0.25,
+      direction: 'right',
+      random: false,
+      straight: true,
+      out_mode: 'out',
+      bounce: false,
+      attract: {
+        enable: false,
+        rotateX: 600,
+        rotateY: 1200,
+      },
+    },
+  },
+  interactivity: {
+    detect_on: 'canvas',
+    events: {
+      onhover: {
+        enable: false,
+        mode: 'repulse',
+      },
+      onclick: {
+        enable: false,
+        mode: 'repulse',
+      },
+      resize: true,
+    },
+    modes: {
+      grab: {
+        distance: 400,
+        line_linked: {
+          opacity: 1,
+        },
+      },
+      bubble: {
+        distance: 400,
+        size: 40,
+        duration: 2,
+        opacity: 8,
+        speed: 3,
+      },
+      repulse: {
+        distance: 200,
+        duration: 0.4,
+      },
+      push: {
+        particles_nb: 4,
+      },
+      remove: {
+        particles_nb: 2,
+      },
+    },
+  },
+  retina_detect: true,
+};
+export const CLOUD3_PARTICLES = {
+  particles: {
+    number: {
+      value: 50,
+      density: {
+        enable: true,
+        value_area: 1523.2414578222467,
+      },
+    },
+    color: {
+      value: '#dbdaf0',
+    },
+    shape: {
+      type: 'image',
+      stroke: {
+        width: 5,
+        color: '#ffffff',
+      },
+      polygon: {
+        nb_sides: 10,
+      },
+      image: {
+        src: CloudThree,
+        width: 385,
+        height: 253,
       },
     },
     opacity: {

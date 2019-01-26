@@ -1,6 +1,8 @@
 import React from 'react';
 import Particles from 'react-particles-js';
-import { STAR_PARTICLES, DAY_PARTICLES, CLOUD_PARTICLES } from '../models/Particles.js';
+import {
+  STAR_PARTICLES, CLOUD1_PARTICLES, CLOUD2_PARTICLES, CLOUD3_PARTICLES,
+} from '../models/Particles.js';
 // $FlowFixMe
 import './Sky.scss';
 
@@ -36,7 +38,9 @@ export default class Sky extends React.Component<Props, State> {
           {!isNight && (
             <div className="daySky">
               {' '}
-              <Particles className="day" params={DAY_PARTICLES} /> <Particles className="clouds" params={CLOUD_PARTICLES} />{' '}
+              <Particles className="day" params={CLOUD1_PARTICLES} />
+              <Particles className="day" params={CLOUD2_PARTICLES} />
+              <Particles className="day" params={CLOUD3_PARTICLES} />
             </div>
           )}
         </div>{' '}

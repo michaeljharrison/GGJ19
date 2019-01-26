@@ -6,6 +6,7 @@ type Props = {
   stateMachine: any,
 };
 type State = {};
+
 export default class Boat extends React.Component<Props, State> {
   constructor() {
     super();
@@ -19,11 +20,6 @@ export default class Boat extends React.Component<Props, State> {
   render() {
     let { stateMachine } = this.props;
     if (!stateMachine) stateMachine = {};
-    return (
-      <div className="Boat overlay">
-        {' '}
-        <div className="state">Boat</div>
-      </div>
-    );
+    return <div className="Boat overlay" />;
   }
 }

@@ -34,6 +34,8 @@ const handleScenario2Input = (stateMachine: any, params: Object, input: string) 
         || input.toLowerCase().match('mood')
         || input.toLowerCase().match('lit')
         || input.toLowerCase().match('lol')
+        || input.toLowerCase().match('yolo')
+        || input.toLowerCase().match('yeet')
       ) {
         stateMachine.toS2C2P();
         params.scenario += 1;
@@ -57,15 +59,44 @@ const handleScenario2Input = (stateMachine: any, params: Object, input: string) 
   }
 };
 
-const handleScenario3Input = (stateMachine: any, params: Object, input: string) => {
+const handleScenario4Input = (stateMachine: any, params: Object, input: string) => {
   console.log('Handling input for Scenario 3: ', stateMachine, params, input);
   stateMachine.endScenario3();
   return { status: 'success', message: 'Yarr did it!', title: 'Success' };
 };
-const handleScenario4Input = (stateMachine: any, params: Object, input: string) => {
-  console.log('Handling input for Scenario 4: ', stateMachine, params, input);
-  stateMachine.endScenario4();
-  return { status: 'success', message: 'Yarr did it!', title: 'Success' };
+
+const handleScenario3Input = (stateMachine: any, params: Object, input: string) => {
+  switch (stateMachine.state) {
+    case 'SE':
+      if ((input.toLowerCase().match('friend') || input.toLowerCase().match('crew'))) {
+        stateMachine.toSEC1();
+        return { status: 'success', message: 'You eat your friends.' };
+      }
+      stateMachine.toSEC2();
+      return { status: 'confuse', message: 'You should eat your friends.' };
+    case 'SEC1':
+      if (input.toLowerCase().match('corn')) {
+        stateMachine.toSEC11();
+        return { status: 'success', message: 'You eat the Corn Man.' };
+      } if (input.toLowerCase().match('millenial')) {
+        stateMachine.toSEC12();
+        return { status: 'success', message: 'You eat the Millenial' };
+      } if (input.toLowerCase().match('infected')) {
+        stateMachine.toSEC13();
+        return { status: 'success', message: 'You eat the gross noob.' };
+      }
+      return { status: 'confuse', message: 'Who do you eat? (Corn, Millenial, Infected)' };
+    case 'SEC2':
+      if (input.toLowerCase().match('eat') && (input.toLowerCase().match('friend') || input.toLowerCase().match('crew'))) {
+        stateMachine.toSEC1();
+        return { status: 'success', message: 'Good move.' };
+      }
+      stateMachine.toFail();
+      return { status: 'error', message: 'Bad Move.' };
+
+    default:
+      return { status: 'confuse', message: 'Lolwut (this should enver happen)?' };
+  }
 };
 
 export const parseInput = (stateMachine: string, params: Object, input: string, openNotificationWithIcon: any) => {

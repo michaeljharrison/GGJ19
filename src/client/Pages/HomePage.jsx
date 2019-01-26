@@ -90,6 +90,24 @@ class HomePage extends React.Component<any, State> {
   @autobind
   _newScenario() {
     const { stateParams, stateMachine, intervalId } = this.state;
+  
+    if(stateMachine.state === 'fail' || stateMachine.state === 'win') {
+      this.setState({isIntro: true});
+      this.setState({introComplete: false});
+      stateParams.scenario = 1;
+      this.stateMachine.toSailing();
+      return;
+    }
+
+    if(stateMachine.state === 'SEC11' || stateMachine.state === 'SEC12' || stateMachine.state === 'SEC13') {
+      this.setState({isIntro: true});
+      this.setState({introComplete: false});
+      stateParams.scenario = 1;
+      this.stateMachine.toSailing();
+      return;
+      return;
+    }
+    
     console.log('INTERVAL: ', stateParams);
     console.log('CurrentState: ', stateMachine.state);
     if (stateMachine.state === 'sailing') {
@@ -109,7 +127,7 @@ class HomePage extends React.Component<any, State> {
           break;
         case 3:
           clearInterval(intervalId);
-          stateMachine.toS3C1(this.openNotificationWithIcon);
+          stateMachine.toSE(this.openNotificationWithIcon);
           break;
         case 4:
           clearInterval(intervalId);
@@ -158,8 +176,8 @@ class HomePage extends React.Component<any, State> {
           <DebugInfo stateMachine={stateMachine} />
           {isIntro && <IntroOverlay startGame={this._startGame}/>}
           <Sky isNight={isNight} />
-          <Boat show={!isIntro || isOutro}/>
-          <Island show={!introComplete}/>
+          <Boat show/>
+          <Island show={(!isIntro && !introComplete) || isOutro}/>
           <Ocean />
         </div>
         <Interface disabled={isIntro} newInputCallback={this._newInput} setNightCallback={this._toggleNight} ref="interface" />

@@ -59,12 +59,12 @@ class HomePage extends React.Component<any, State> {
   @autobind
   openNotificationWithIcon(type, message) {
     notification[type]({
-      message: 'Yarrr!',
       description: message,
-      duration: 8,
+      placement: 'topLeft',
+      duration: 6,
       style: {
-        left: -Math.floor(Math.random() * 500 + 250),
-        top: Math.floor(Math.random() * 500 + 250),
+        // left: -Math.floor(Math.random() * 500 + 250),
+        // top: Math.floor(Math.random() * 250 + 25),
       },
     });
     if (this.refs.interface) {
@@ -86,7 +86,7 @@ class HomePage extends React.Component<any, State> {
       switch (stateParams.scenario) {
         case 0:
           clearInterval(intervalId);
-          stateMachine.startScenario1(this.openNotificationWithIcon);
+          stateMachine.toS1C1(this.openNotificationWithIcon);
           break;
         case 1:
           clearInterval(intervalId);
@@ -119,11 +119,15 @@ class HomePage extends React.Component<any, State> {
   _newInput(input) {
     const { stateParams, stateMachine } = this.state;
     const returnMessage = parseInput(stateMachine, stateParams, input, this.openNotificationWithIcon);
-    if (returnMessage) {
+    if (returnMessage.status === 'success') {
       const intervalId = setInterval(this._newScenario, 5000);
       this.state.intervalId = intervalId;
+      this.openNotificationWithIcon(NOTIFICATION_TYPES.SUCCESS, returnMessage.message);
+    } else if (returnMessage.status === 'confuse') {
+      this.openNotificationWithIcon(NOTIFICATION_TYPES.WARNING, returnMessage.message);
+    } else if (returnMessage.status === 'fail') {
+      this.openNotificationWithIcon(NOTIFICATION_TYPES.ERROR, returnMessage.message);
     }
-    this.openNotificationWithIcon(NOTIFICATION_TYPES.SUCCESS, returnMessage);
   }
 
   render() {

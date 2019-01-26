@@ -29,7 +29,6 @@ export default class Interface extends React.Component<Props, State> {
 
   @autobind
   _handleInputChange(value: any) {
-    console.log('Input value: ', value.target.value);
     this.setState({ currentCommandInput: value.target.value });
   }
 
@@ -37,13 +36,16 @@ export default class Interface extends React.Component<Props, State> {
   _handleEnterInput(value: any) {
     const { newInputCallback } = this.props;
     console.log('New input: ', value.target.value);
-
-    // Add to command history.
-    const { commandHistory } = this.state;
-    commandHistory.unshift(value.target.value);
-    this.setState({ currentCommandInput: '' });
-    newInputCallback(value.target.value);
-    this.forceUpdate();
+    if (value.target.value.length === 0) {
+      console.log('Empty Input');
+    } else {
+      // Add to command history.
+      const { commandHistory } = this.state;
+      commandHistory.unshift(value.target.value);
+      this.setState({ currentCommandInput: '' });
+      newInputCallback(value.target.value);
+      this.forceUpdate();
+    }
   }
 
   @autobind

@@ -1,4 +1,5 @@
 import React from 'react';
+import BoatBG from '../style/assets/BOAT.png';
 // $FlowFixMe
 import './Boat.scss';
 
@@ -20,6 +21,10 @@ export default class Boat extends React.Component<Props, State> {
   render() {
     let { stateMachine } = this.props;
     if (!stateMachine) stateMachine = {};
-    return <div className="Boat overlay" />;
+    return (
+      <div className="Boat overlay">
+        <img className="boatBG" src={BoatBG} alt="huh" />
+      </div>
+    );
   }
 }

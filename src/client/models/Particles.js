@@ -391,7 +391,7 @@ export const CLOUD1_PARTICLES = {
     move: {
       enable: true,
       speed: 0.25,
-      direction: 'right',
+      direction: 'left',
       random: false,
       straight: true,
       out_mode: 'out',
@@ -502,7 +502,7 @@ export const CLOUD2_PARTICLES = {
     move: {
       enable: true,
       speed: 0.25,
-      direction: 'right',
+      direction: 'left',
       random: false,
       straight: true,
       out_mode: 'out',
@@ -612,7 +612,7 @@ export const CLOUD3_PARTICLES = {
     move: {
       enable: true,
       speed: 0.25,
-      direction: 'right',
+      direction: 'left',
       random: false,
       straight: true,
       out_mode: 'out',

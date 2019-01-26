@@ -1,0 +1,40 @@
+@import "../style/global_colors.scss";
+.Sky {
+    .nightSky {
+        z-index: 1;
+        background: linear-gradient(#312f3e, #5378a0);
+    }
+    .daySky {
+        z-index: 0;
+        background: linear-gradient(#8FD5EB, #FFFFFF);
+        width: 100%;
+        overflow: hidden;
+    }
+    .day {
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+    }
+    .clouds {
+        z-index: 3;
+        position: absolute;
+    }
+    @keyframes sunAnim {
+        0% {
+            left: -5%;
+            ;
+        }
+        100% {
+            left: 160%;
+        }
+    }
+    .sun {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        animation-name: sunAnim;
+        animation-duration: 500s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+}

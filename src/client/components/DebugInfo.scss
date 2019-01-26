@@ -1,0 +1,13 @@
+@import "../style/global_colors.scss";
+.DebugInfo {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(256, 256, 256, 0.2);
+    color: black;
+    position: absolute;
+    opacity: 0.5;
+    right: 20px;
+    width: 200px;
+    height: 150px;
+    top: 100px;
+}

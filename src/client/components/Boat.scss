@@ -1,0 +1,9 @@
+@import "../style/global_colors.scss";
+.Boat {
+    background-color: rgba(200, 200, 200, 0);
+    .boatBG {
+        height: 150%;
+        z-index: 4;
+        margin-bottom: 20%;
+    }
+}

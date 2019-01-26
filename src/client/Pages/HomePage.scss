@@ -1,0 +1,31 @@
+@import "../style/global_colors.scss";
+.HomePage {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    height: 100%;
+    .gameView {
+        background-color: $ocean-background-color;
+        width: 100%;
+        height: 73%;
+        .overlay {
+            position: absolute;
+            height: 73%;
+            width: 100%;
+            display: flex;
+        }
+        .Boat {
+            height: 62%;
+            margin-top: 3.2%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+    }
+    .interface {
+        width: 100%;
+        height: 27%;
+    }
+}

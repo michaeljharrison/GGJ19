@@ -1,0 +1,93 @@
+@import "../style/global_colors.scss";
+.Ocean {
+    .water {
+        background: linear-gradient(180deg, #44C7F5 0%, #02ACF1 100%);
+        height: 30%;
+        margin-top: auto;
+        width: 100%;
+    }
+    .boatBG {
+        height: 150%;
+        margin-bottom: 20%;
+    }
+    .oceanParticles {}
+    .waveWrapper {
+        width: 100%;
+        height: 100px;
+        position: relative;
+    }
+    .wave {
+        width: 200%;
+        height: 100%;
+    }
+    .waveBack {
+        margin-bottom: 40px;
+        z-index: 2;
+        position: absolute;
+        animation-name: waveAnimBack;
+        animation-duration: 20s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+    .waveMid {
+        margin-bottom: 20px;
+        z-index: 3;
+        top: 12.5%;
+        position: absolute;
+        animation-name: waveAnimMid;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+    .waveFront {
+        z-index: 4;
+        position: absolute;
+        top: 40%;
+        animation-name: waveAnimFront;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+    @keyframes waveAnimBack {
+        0% {
+            left: -100%;
+            bottom: 0%;
+        }
+        50% {
+            left: -50%;
+            bottom: 5%;
+        }
+        100% {
+            left: 0%;
+            bottom: 0%;
+        }
+    }
+    @keyframes waveAnimMid {
+        0% {
+            left: -100%;
+            bottom: 5%;
+        }
+        50% {
+            left: -50%;
+            bottom: 0%;
+        }
+        100% {
+            left: 0%;
+            bottom: 5%;
+        }
+    }
+    @keyframes waveAnimFront {
+        0% {
+            left: -100%;
+            bottom: 0%;
+        }
+        50% {
+            left: -50%;
+            bottom: 5%;
+        }
+        100% {
+            left: 0%;
+            bottom: 0%;
+        }
+    }
+}

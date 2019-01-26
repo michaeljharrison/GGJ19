@@ -1,5 +1,6 @@
 @import "../style/global_colors.scss";
 @import url(https://fonts.googleapis.com/css?family=Merienda);
+@import url(https://fonts.googleapis.com/css?family=Aladin);
 .interface {
     display: flex;
     flex-direction: row;
@@ -18,7 +19,7 @@
             width: 100%;
             height: 30%;
             margin-bottom: 16px;
-            font-family: "Merienda", Serif;
+            font-family: "Aladin", Serif;
             font-size: 18px;
             font-weight: bold;
             color: #2B2B2B;
@@ -64,7 +65,7 @@
                     flex-direction: row;
                     width: 100%;
                     color: rgba(50, 50, 50, 1);
-                    min-height: 50px;
+                    min-height: 20px;
                     justify-content: flex-start;
                     align-items: center;
                     padding-left: 2%;
@@ -74,15 +75,16 @@
                     transition-duration: 0.3s;
                     transition-timing-function: ease;
                     transition-delay: 0s;
-                    opacity: 0.75;
+                    opacity: 1.0;
                     font-family: "Merienda", Serif;
                     font-size: 18px;
                     font-weight: bold;
                     color: #2B2B2B;
                     text-align: justify;
                     text-justify: inter-word;
+                    line-height: 
                     .crewMessage {
-                        color: #d05353ab;
+                        color: #d05353;
                     }
                 }
             }

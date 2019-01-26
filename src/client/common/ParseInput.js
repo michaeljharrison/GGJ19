@@ -1,3 +1,23 @@
+const handleScenario0Input = (stateMachine: any, params: Object, input: string, openNotificationWithIcon: any) => {
+  console.log('Handling input for Scenario 0: ', stateMachine.state, params, input);
+  switch (stateMachine.state) {
+    case 'start':
+      if (input.toLowerCase().match('yes')) {
+        stateMachine.toStart1();
+        params.scenario += 1;
+        return { status: 'success', title: 'Understood', message: 'Your First Order.' };
+      }
+      if (input.toLowerCase().match('no')) {
+        stateMachine.toStart1();
+        params.scenario += 1;
+        return { status: 'success', title: 'Understood.' };
+      }
+      return { status: 'confuse', title: 'Huh?', message: 'CRACKERS wants a yes or no.' };
+    default:
+      return { status: 'confuse', message: 'Lolwut (this should enver happen)?' };
+  }
+};
+
 const handleScenario1Input = (stateMachine: any, params: Object, input: string, openNotificationWithIcon: any) => {
   console.log('Handling input for Scenario 1: ', stateMachine.state, params, input);
   switch (stateMachine.state) {
@@ -54,7 +74,6 @@ const handleScenario2Input = (stateMachine: any, params: Object, input: string) 
       stateMachine.toS2C2Retry();
       return { status: 'failure', message: "She doesn't seem to understand english.", title: '#Millenials.' };
 
-
     default:
       return { status: 'confuse', message: 'Lolwut (this should enver happen)?' };
   }
@@ -69,7 +88,7 @@ const handleScenario4Input = (stateMachine: any, params: Object, input: string) 
 const handleScenario3Input = (stateMachine: any, params: Object, input: string) => {
   switch (stateMachine.state) {
     case 'SE':
-      if ((input.toLowerCase().match('friend') || input.toLowerCase().match('crew'))) {
+      if (input.toLowerCase().match('friend') || input.toLowerCase().match('crew')) {
         stateMachine.toSEC1();
         return { status: 'success', message: 'You eat your friends.' };
       }
@@ -79,10 +98,12 @@ const handleScenario3Input = (stateMachine: any, params: Object, input: string) 
       if (input.toLowerCase().match('corn')) {
         stateMachine.toSEC11();
         return { status: 'success', message: 'You eat the Corn Man.' };
-      } if (input.toLowerCase().match('millenial')) {
+      }
+      if (input.toLowerCase().match('millenial')) {
         stateMachine.toSEC12();
         return { status: 'success', message: 'You eat the Millenial' };
-      } if (input.toLowerCase().match('infected')) {
+      }
+      if (input.toLowerCase().match('infected')) {
         stateMachine.toSEC13();
         return { status: 'success', message: 'You eat the gross noob.' };
       }
@@ -105,6 +126,8 @@ export const parseInput = (stateMachine: string, params: Object, input: string, 
     return { status: 'success', message: "Wait for something to happen, cap'n!", title: 'Wait!' };
   }
   switch (params.scenario) {
+    case 0:
+      return handleScenario0Input(stateMachine, params, input, (openNotificationWithIcon: any));
     case 1:
       return handleScenario1Input(stateMachine, params, input, (openNotificationWithIcon: any));
     case 2:

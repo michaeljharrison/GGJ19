@@ -10,7 +10,7 @@ import { CONFIG } from '../i18n.js';
 import './HomePage.scss';
 import { STATE_MACHINE } from '../models/StateMachine';
 import {
-  Interface, Boat, Sky, Ocean, DebugInfo, IntroOverlay, Island
+  Interface, Boat, Sky, Ocean, DebugInfo, IntroOverlay, Island,
 } from '../components';
 
 const NOTIFICATION_TYPES = {
@@ -49,24 +49,26 @@ class HomePage extends React.Component<any, State> {
         isSailing: true,
         isScenario: false,
         hasLost: false,
-        scenario: 1,
+        scenario: 0,
         currentRetries: 0,
+        introFinished: false,
       },
     };
   }
 
   componentDidMount() {
-    this.setState({ stateMachine: new StateMachine(STATE_MACHINE(this.openNotificationWithIcon))});
+    this.setState({ stateMachine: new StateMachine(STATE_MACHINE(this.openNotificationWithIcon)) });
     this.setState({ isReady: true });
   }
 
   @autobind
-  openNotificationWithIcon(type, message, title) {
+  openNotificationWithIcon(type, message, title, duration) {
+    console.log(duration);
     notification.open({
       message: title,
       description: message,
       placement: 'topLeft',
-      duration: 4,
+      duration,
       style: {
         // left: -Math.floor(Math.random() * 500 + 250),
         // top: Math.floor(Math.random() * 250 + 25),
@@ -74,7 +76,7 @@ class HomePage extends React.Component<any, State> {
     });
     if (this.refs.interface) {
       this.refs.interface.addToHistory(message);
-    }4
+    }
   }
 
   @autobind
@@ -83,28 +85,27 @@ class HomePage extends React.Component<any, State> {
     const intervalId = setInterval(this._newScenario, 5000);
     // store intervalId in the state so it can be accessed later:
     this.state.intervalId = intervalId;
-    this.setState({isIntro: false})
+    this.setState({ isIntro: false });
     this.state.isIntro = false;
   }
 
   @autobind
   _newScenario() {
     const { stateParams, stateMachine, intervalId } = this.state;
-  
-    if(stateMachine.state === 'fail' || stateMachine.state === 'win') {
-      this.setState({isIntro: true});
-      this.setState({introComplete: false});
+
+    if (stateMachine.state === 'fail' || stateMachine.state === 'win') {
+      this.setState({ isIntro: true });
+      this.setState({ introComplete: false });
       stateParams.scenario = 1;
       this.stateMachine.toSailing();
       return;
     }
 
-    if(stateMachine.state === 'SEC11' || stateMachine.state === 'SEC12' || stateMachine.state === 'SEC13') {
-      this.setState({isIntro: true});
-      this.setState({introComplete: false});
+    if (stateMachine.state === 'SEC11' || stateMachine.state === 'SEC12' || stateMachine.state === 'SEC13') {
+      this.setState({ isIntro: true });
+      this.setState({ introComplete: false });
       stateParams.scenario = 1;
       this.stateMachine.toSailing();
-      return;
       return;
     }
 
@@ -117,6 +118,10 @@ class HomePage extends React.Component<any, State> {
       stateParams.isSailing = false;
       console.log('This should say 1!', stateParams.scenario);
       switch (stateParams.scenario) {
+        case 0:
+          clearInterval(intervalId);
+          stateMachine.toStart(this.openNotificationWithIcon);
+          break;
         case 1:
           clearInterval(intervalId);
           stateMachine.toS1C1(this.openNotificationWithIcon);
@@ -155,6 +160,10 @@ class HomePage extends React.Component<any, State> {
     if (returnMessage.status === 'success') {
       const intervalId = setInterval(this._newScenario, 5000);
       this.state.intervalId = intervalId;
+      if (returnMessage.message === 'Your First Order.') {
+        console.log('INTRO COMPLETE');
+        this.setState({ introComplete: true });
+      }
       this.openNotificationWithIcon(NOTIFICATION_TYPES.SUCCESS, returnMessage.message, returnMessage.title);
     } else if (returnMessage.status === 'confuse') {
       this.openNotificationWithIcon(NOTIFICATION_TYPES.WARNING, returnMessage.message, returnMessage.title);
@@ -164,7 +173,9 @@ class HomePage extends React.Component<any, State> {
   }
 
   render() {
-    const { stateMachine, isReady, isNight, stateParams } = this.state;
+    const {
+      stateMachine, isReady, isNight, stateParams,
+    } = this.state;
     const { isIntro, isOutro, introComplete } = this.state;
     if (!isReady) {
       return <div className="LoadingWrapper">LOADING</div>;
@@ -174,11 +185,11 @@ class HomePage extends React.Component<any, State> {
       <div className="Page HomePage">
         <div className="gameView">
           <DebugInfo stateMachine={stateMachine} />
-          {isIntro && <IntroOverlay startGame={this._startGame}/>}
+          {isIntro && <IntroOverlay startGame={this._startGame} />}
           <Sky isNight={isNight} />
-          <Boat show/>
-          <Island show={(!isIntro && !introComplete) || isOutro}/>
-          <Ocean />
+          <Boat show />
+          <Island show={!isIntro} enter={!introComplete} leave={introComplete} />
+          <Ocean slow={!isIntro && !introComplete} />
         </div>
         <Interface disabled={isIntro} newInputCallback={this._newInput} setNightCallback={this._toggleNight} ref="interface" />
       </div>

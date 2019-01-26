@@ -10,6 +10,7 @@ import './Ocean.scss';
 
 type Props = {
   stateMachine: any,
+  slow: boolean,
 };
 type State = {};
 export default class Ocean extends React.Component<Props, State> {
@@ -23,17 +24,21 @@ export default class Ocean extends React.Component<Props, State> {
   componentWillReceiveProps() {}
 
   render() {
-    let { stateMachine } = this.props;
+    let { stateMachine, slow } = this.props;
+    let classes = '';
     if (!stateMachine) stateMachine = {};
+    if (slow) {
+      classes = 'slowed';
+    }
     return (
       <div className="Ocean overlay">
         {' '}
         <div className="water">
           {/* <Particles className="oceanParticles" params={OCEAN_PARTICLES} /> */}
           <div className="wave waveWrapper">
-            <img src={WaveBack} alt="?" className="wave waveBack" />
-            <img src={WaveMid} alt="?" className="wave waveMid" />
-            <img src={WaveFront} alt="?" className="wave waveFront" />
+            <img src={WaveBack} alt="?" className={`wave waveBack ${classes}`} />
+            <img src={WaveMid} alt="?" className={`wave waveMid ${classes}`} />
+            <img src={WaveFront} alt="?" className={`wave waveFront ${classes}`} />
           </div>
         </div>
       </div>

@@ -1,5 +1,21 @@
 @import "../style/global_colors.scss";
 .Island {
+    @keyframes islandLeave {
+        0% {
+            right: 500px;
+        }
+        100% {
+            right: 3000px;
+        }
+    }
+    @keyframes islandEnters {
+        0% {
+            right: -1000px;
+        }
+        100% {
+            right: 500px;
+        }
+    }
     background-color: rgba(200, 200, 200, 0);
     .islandBG {
         height: 90%;
@@ -7,5 +23,24 @@
         margin-top: 12%;
         max-height: 60%;
         margin-left: 20%;
+        position: absolute;
+    }
+    .islandBG.enter {
+        animation-name: islandEnters;
+        animation-duration: 5s;
+        animation-iteration-count: 1;
+        animation-direction: normal;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+        animation-play-state: running;
+    }
+    .islandBG.leave {
+        animation-name: islandLeave;
+        animation-duration: 8s;
+        animation-iteration-count: 1;
+        animation-direction: linear;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+        animation-play-state: pause;
     }
 }

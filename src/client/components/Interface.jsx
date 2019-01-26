@@ -32,7 +32,9 @@ export default class Interface extends React.Component<Props, State> {
   @autobind
   _handleInputChange(value: any) {
     const { disabled } = this.props;
-    if (!disabled) { this.setState({ currentCommandInput: value.target.value }); }
+    if (!disabled) {
+      this.setState({ currentCommandInput: value.target.value });
+    }
   }
 
   @autobind
@@ -64,7 +66,7 @@ export default class Interface extends React.Component<Props, State> {
   @autobind
   addToHistory(message: string) {
     const { commandHistory } = this.state;
-    commandHistory.unshift(<span className="crewMessage">{message}</span>);
+    commandHistory.unshift(message);
     this.forceUpdate();
   }
 

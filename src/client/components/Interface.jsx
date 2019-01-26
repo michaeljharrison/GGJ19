@@ -1,30 +1,17 @@
 import React from 'react';
-import { Input, notification, Button } from 'antd';
+import { Input, Button } from 'antd';
 import autobind from 'autobind-decorator';
 // $FlowFixMe
 import './Interface.scss';
 
 type Props = {
   stateMachine: any,
+  setNightCallback: any,
+  newInputCallback: any,
 };
 type State = {
   commandHistory: Array<string>,
   currentCommandInput: string,
-};
-
-const NOTIFICATION_TYPES = {
-  SUCCESS: 'success',
-  WARNING: 'warning',
-  INFO: 'info',
-  ERROR: 'error',
-};
-
-const openNotificationWithIcon = (type) => {
-  notification[type]({
-    message: 'Yarrr!',
-    description: 'This be my response to yer question.',
-    duration: 8,
-  });
 };
 
 export default class Interface extends React.Component<Props, State> {
@@ -48,20 +35,14 @@ export default class Interface extends React.Component<Props, State> {
 
   @autobind
   _handleEnterInput(value: any) {
+    const { newInputCallback } = this.props;
     console.log('New input: ', value.target.value);
 
     // Add to command history.
     const { commandHistory } = this.state;
     commandHistory.unshift(value.target.value);
     this.setState({ currentCommandInput: '' });
-
-    // Check input against current state.
-
-    // Update state if required.
-    openNotificationWithIcon(NOTIFICATION_TYPES.SUCCESS);
-
-    // Render
-
+    newInputCallback(value.target.value);
     this.forceUpdate();
   }
 
@@ -76,7 +57,8 @@ export default class Interface extends React.Component<Props, State> {
   }
 
   render() {
-    let { stateMachine, setNightCallback } = this.props;
+    let { stateMachine } = this.props;
+    const { setNightCallback } = this.props;
     const { commandHistory, currentCommandInput } = this.state;
 
     console.log('Current State: ', commandHistory, currentCommandInput);

@@ -2,10 +2,10 @@
 .Island {
     @keyframes islandLeave {
         0% {
-            right: 500px;
+            right: 60px;
         }
         100% {
-            right: 3000px;
+            right: 2000px;
         }
     }
     @keyframes islandEnters {
@@ -13,7 +13,7 @@
             right: -1000px;
         }
         100% {
-            right: 500px;
+            right: 60px;
         }
     }
     background-color: rgba(200, 200, 200, 0);

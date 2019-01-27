@@ -25,15 +25,21 @@ const handleScenario1Input = (stateMachine: any, params: Object, input: string, 
       if (input.toLowerCase().match('wolf')) {
         stateMachine.toS1C1F();
         params.scenario += 1;
-      } else if (input.toLowerCase().match('chicken')) {
+        return { status: 'success', message: 'You grab the Wolf.', title: 'Dinner!' };
+      }
+      if (input.toLowerCase().match('chicken')) {
         stateMachine.toS1C1P();
         params.scenario += 1;
-      } else if (input.toLowerCase().match('corn')) {
+        params.hasCorn = true;
+        return { status: 'success', message: 'You grab the Chicken.', title: 'Cluck!' };
+      }
+      if (input.toLowerCase().match('corn')) {
         stateMachine.toS1C1F();
         params.scenario += 1;
-      } else {
-        return { status: 'confuse', message: 'Yarrrr? Chicken, Wolf or Corn!?', title: 'Confused!' };
+        return { status: 'success', message: 'You grab the corn.', title: 'Dinner!' };
       }
+      return { status: 'confuse', message: 'Yarrrr? Chicken, Wolf or Corn!?', title: 'Confused!' };
+
       break;
     default:
       return { status: 'confuse', message: 'Lolwut (this should enver happen)?' };
@@ -61,6 +67,7 @@ const handleScenario2Input = (stateMachine: any, params: Object, input: string) 
         stateMachine.toS2C2P();
         params.scenario += 1;
         params.currentRetries = 0;
+        params.hasMerry = true;
         return { status: 'success', message: 'She understand your disgusting slang.', title: 'Yukky.' };
       }
       // Failure, check retries
@@ -79,12 +86,6 @@ const handleScenario2Input = (stateMachine: any, params: Object, input: string) 
   }
 };
 
-const handleScenario4Input = (stateMachine: any, params: Object, input: string) => {
-  console.log('Handling input for Scenario 3: ', stateMachine, params, input);
-  stateMachine.endScenario3();
-  return { status: 'success', message: 'Yarr did it!', title: 'Success' };
-};
-
 const handleScenario3Input = (stateMachine: any, params: Object, input: string) => {
   switch (stateMachine.state) {
     case 'SE':
@@ -92,22 +93,21 @@ const handleScenario3Input = (stateMachine: any, params: Object, input: string) 
         stateMachine.toSEC1();
         return { status: 'success', message: 'You eat your friends.' };
       }
-      stateMachine.toSEC2();
       return { status: 'confuse', message: 'You should eat your friends.' };
     case 'SEC1':
-      if (input.toLowerCase().match('corn')) {
+      if (input.toLowerCase().match('corn') || input.toLowerCase().match('ignatius')) {
         stateMachine.toSEC11();
-        return { status: 'success', message: 'You eat the Corn Man.' };
+        return { status: 'success', message: 'You eat the Corn Man.', title: 'Monster' };
       }
-      if (input.toLowerCase().match('millenial')) {
+      if (input.toLowerCase().match('millenial') || input.toLowerCase().match('meredith') || input.toLowerCase().match('merry')) {
         stateMachine.toSEC12();
-        return { status: 'success', message: 'You eat the Millenial' };
+        return { status: 'success', message: 'You eat the Millenial', title: 'Monster' };
       }
-      if (input.toLowerCase().match('infected')) {
+      if (input.toLowerCase().match('crackers')) {
         stateMachine.toSEC13();
-        return { status: 'success', message: 'You eat the gross noob.' };
+        return { status: 'success', message: 'You ate Crackers, who does that?', title: 'Monster' };
       }
-      return { status: 'confuse', message: 'Who do you eat? (Corn, Millenial, Infected)' };
+      return { status: 'confuse', message: 'Who do you eat? (Crackers, Meredith or Ignatius)' };
     case 'SEC2':
       if (input.toLowerCase().match('eat') && (input.toLowerCase().match('friend') || input.toLowerCase().match('crew'))) {
         stateMachine.toSEC1();
@@ -119,6 +119,12 @@ const handleScenario3Input = (stateMachine: any, params: Object, input: string) 
     default:
       return { status: 'confuse', message: 'Lolwut (this should enver happen)?' };
   }
+};
+
+const handleScenario4Input = (stateMachine: any, params: Object, input: string) => {
+  console.log('Handling input for Scenario 3: ', stateMachine, params, input);
+  stateMachine.endScenario3();
+  return { status: 'success', message: 'Yarr did it!', title: 'Success' };
 };
 
 export const parseInput = (stateMachine: string, params: Object, input: string, openNotificationWithIcon: any) => {

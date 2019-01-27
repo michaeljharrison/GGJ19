@@ -33,6 +33,10 @@ type State = {
   isIntro: boolean,
   isOutro: boolean,
   introComplete: boolean,
+  hasCorn: false,
+  hasMerry: false,
+  secondRun: false,
+  showHull: boolean,
 };
 
 class HomePage extends React.Component<any, State> {
@@ -42,9 +46,13 @@ class HomePage extends React.Component<any, State> {
       stateMachine: null,
       isReady: false,
       isNight: false,
+      secondRun: false,
       isIntro: true,
       introComplete: false,
       isOutro: false,
+      hasCorn: false,
+      hasMerry: false,
+      showHull: true,
       stateParams: {
         isSailing: true,
         isScenario: false,
@@ -52,7 +60,6 @@ class HomePage extends React.Component<any, State> {
         scenario: 0,
         currentRetries: 0,
         introFinished: false,
-        
       },
     };
   }
@@ -165,6 +172,15 @@ class HomePage extends React.Component<any, State> {
         console.log('INTRO COMPLETE');
         this.setState({ introComplete: true });
       }
+      if (returnMessage.title === 'Cluck!') {
+        this.setState({ hasCorn: true });
+      }
+      if (returnMessage.title === 'Yukky.') {
+        this.setState({ hasMerry: true });
+      }
+      if (returnMessage.title === 'Monster') {
+        this.setState({ secondRun: true });
+      }
       this.openNotificationWithIcon(NOTIFICATION_TYPES.SUCCESS, returnMessage.message, returnMessage.title);
     } else if (returnMessage.status === 'confuse') {
       this.openNotificationWithIcon(NOTIFICATION_TYPES.WARNING, returnMessage.message, returnMessage.title);
@@ -175,9 +191,11 @@ class HomePage extends React.Component<any, State> {
 
   render() {
     const {
-      stateMachine, isReady, isNight, stateParams,
+      stateMachine, isReady, isNight, stateParams, secondRun, showHull,
     } = this.state;
-    const { isIntro, isOutro, introComplete } = this.state;
+    const {
+      isIntro, isOutro, introComplete, hasCorn, hasMerry,
+    } = this.state;
     if (!isReady) {
       return <div className="LoadingWrapper">LOADING</div>;
     }
@@ -186,13 +204,13 @@ class HomePage extends React.Component<any, State> {
       <div className="Page HomePage">
         <div className="gameView">
           <DebugInfo stateMachine={stateMachine} />
-          {isIntro && <IntroOverlay startGame={this._startGame} />}
-          <Sky isNight={isNight} />
-          <Boat show />
-          <Island show={!isIntro} enter={!introComplete} leave={introComplete} />
+          {isIntro && <IntroOverlay secondRun={secondRun} startGame={this._startGame} />}
+          <Sky />
+          <Boat showHull={showHull} hasCorn={hasCorn} hasMerry={hasMerry} introComplete={introComplete} stateParams={stateParams} show />
+          <Island show={!isIntro} leave={introComplete} enter={!introComplete} leave={introComplete} />
           <Ocean slow={!isIntro && !introComplete} />
         </div>
-        <Interface disabled={isIntro} newInputCallback={this._newInput} setNightCallback={this._toggleNight} ref="interface" />
+        <Interface showHullCallback={() => { this.setState({ showHull: !showHull }); }} disabled={isIntro} newInputCallback={this._newInput} setNightCallback={this._toggleNight} ref="interface" />
       </div>
     );
   }

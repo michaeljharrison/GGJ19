@@ -6,17 +6,31 @@
     animation-duration: 5s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-    
     .boatBG {
-        height: 150%;
+        position: absolute;
+        height: 220%;
         z-index: 5;
-        margin-bottom: 50%;
-
+        bottom: 40%;
+    }
+    .char {
+        position: absolute;
+        height: 220%;
+        z-index: 5;
+        bottom: 40%;
     }
 }
+
 @keyframes boatAnim {
-    from {transform:rotate(-2deg);}
-    to {transform:rotate(2deg);}
-    0% {bottom: 0%;}
-    100% {bottom: -2%;}
-  }
+    from {
+        transform: rotate(-2deg);
+    }
+    to {
+        transform: rotate(2deg);
+    }
+    0% {
+        bottom: 0%;
+    }
+    100% {
+        bottom: -2%;
+    }
+}

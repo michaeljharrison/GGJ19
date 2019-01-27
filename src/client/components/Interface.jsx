@@ -3,6 +3,8 @@ import { Input, Button } from 'antd';
 import autobind from 'autobind-decorator';
 import ArrowUp from '../style/assets/ARROW_UP_DEFAULT.png';
 import ArrowDown from '../style/assets/ARROW_DOWN_DEFAULT.png';
+import ShowHull from '../style/assets/icon_boat_fill.png';
+import HideHull from '../style/assets/icon_boat_outline.png';
 // $FlowFixMe
 import './Interface.scss';
 
@@ -10,10 +12,12 @@ type Props = {
   stateMachine: any,
   newInputCallback: any,
   disabled: boolean,
+  showHullCallback: any,
 };
 type State = {
   commandHistory: Array<string>,
   currentCommandInput: string,
+  isShowHull: false,
 };
 
 export default class Interface extends React.Component<Props, State> {
@@ -22,6 +26,7 @@ export default class Interface extends React.Component<Props, State> {
     this.state = {
       commandHistory: ['', '', '', '', ''],
       currentCommandInput: '',
+      isShowHull: false,
     };
   }
 
@@ -71,7 +76,7 @@ export default class Interface extends React.Component<Props, State> {
   }
 
   render() {
-    const { disabled } = this.props;
+    const { disabled, showHullCallback } = this.props;
     let { stateMachine } = this.props;
     const { currentCommandInput } = this.state;
     console.log('Interface Disabled: ', disabled);
@@ -97,7 +102,15 @@ export default class Interface extends React.Component<Props, State> {
           </div>
         </div>
         <div className="interfaceRight">
-          <Button />
+          <Button
+            onClick={() => {
+              this.setState({ isShowHull: !this.state.isShowHull });
+              showHullCallback();
+            }}
+          >
+            {this.state.isShowHull && <img src={HideHull} alt="hull" />}
+            {!this.state.isShowHull && <img src={ShowHull} alt="hull" />}
+          </Button>
           <Button>
             <img src={ArrowUp} alt="?" />
           </Button>
